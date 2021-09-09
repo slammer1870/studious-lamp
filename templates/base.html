@@ -4,11 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Alpine JS Include-->
     <script src="//unpkg.com/alpinejs" defer></script>
-  <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    <!--Tailwind CSS Link-->
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='css/main.css')}}"
+    />
     <title>ExecBJJ</title>
   </head>
-  <body style="font-family: montserrat;">
-    {% include "navbar.html" %} {% block content %} {% endblock content %}
+  <body style="font-family: montserrat">
+    {% include "navbar.html" %} {% block content %} {% endblock content %} {% include "footer.html" %}
   </body>
 </html>

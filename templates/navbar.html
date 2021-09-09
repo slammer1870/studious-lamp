@@ -1,3 +1,4 @@
+<!--Navbar-->
 <div>
   <nav
     class="
@@ -11,12 +12,12 @@
       text-2xl
       bg-black
     "
-  >
+  ><!--sideBar represents variable to show/hide mobile sliding menu-->
     <div
       class="container mx-auto flex justify-between items-center"
       x-data="{ sideBar: false }"
     >
-      <svg
+      <a href="/"><svg
         id="Group_2"
         data-name="Group 2"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,13 +46,14 @@
             fill="#fff"
           />
         </g>
-      </svg>
+      </svg><a/>
+      <!--SVGs used as buttons to show/hide mobile menu-->
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="25"
         height="20"
         viewBox="0 0 25 20"
-        class="md:hidden z-50"
+        class="md:hidden z-50 relative"
         :class="{ 'hidden' : sideBar }"
         x-on:click="sideBar = ! sideBar"
       >
@@ -88,7 +90,7 @@
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        class="md:hidden z-50"
+        class="md:hidden z-50 relative"
         :class="{ 'hidden' : !sideBar }"
         x-on:click="sideBar = ! sideBar"
       >
@@ -149,16 +151,16 @@
             flex flex-col
             justify-start
             mt-20
-            text-lg
+            text-sm
             text-white
           "
         >
-          <a class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase"> Our Service </a
-          ><a class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase"> Our Process </a>
-          <a class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase">Contact</a>
-          <button class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium">
+          <a href="#service" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase"> Our Service </a
+          ><a href="#process" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase"> Our Process </a>
+          <a href="#contact" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase">Contact</a>
+          <a href="/login"><button class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium">
             Log In
-          </button>
+          </button></a>
         </div>
       </menu>
     </div>
