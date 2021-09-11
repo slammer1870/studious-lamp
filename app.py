@@ -18,7 +18,7 @@ db = client.flaskDB
 
 # Routes
 from auth import forms, routes
-from posts import routes
+#from posts import routes
 
 @app.route("/")
 def index():
