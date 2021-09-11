@@ -8,7 +8,7 @@ from .forms import RegisterForm, LogInForm
 
 
 @app.route('/register/', methods=['POST', 'GET'])
-def signup():
+def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User()
