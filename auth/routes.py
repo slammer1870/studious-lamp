@@ -7,7 +7,7 @@ from werkzeug.utils import redirect
 from auth.models import User
 from .forms import RegisterForm
 
-@app.route('/register', methods=['POST', 'GET'])
+@app.route('/register/', methods=['POST', 'GET'])
 def signup():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
