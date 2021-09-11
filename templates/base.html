@@ -13,7 +13,10 @@
     />
     <title>ExecBJJ</title>
   </head>
+  {% include "navbar.html" %}
   <body style="font-family: montserrat">
-    {% include "navbar.html" %} {% block content %} {% endblock content %} {% include "footer.html" %}
+    {% include 'partials/_messages.html' %} {% block content %} {% endblock
+    content %}
   </body>
+  {% include "footer.html" %}
 </html>
