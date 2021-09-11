@@ -42,12 +42,17 @@ class User:
     def login(self, form):
 
         user = db.users.find_one({
-        "email": form.get('email')
+        "email": form.email.data
         })
 
-        if user and pbkdf2_sha256.verify(form.get('password'), user['password']):
+        if user and pbkdf2_sha256.verify(form.password.data, user['password']):
             self.start_session(user)
             flash("Thank you for registering, you are now logged in!", "bg-green-400")
             return True
         
         return flash("Invalid login credentials", "bg-red-400")
+
+    def logout(self):
+        session.clear()
+        flash("You have been succesfully logged out", "bg-green-400")
+        return redirect(url_for('index'))

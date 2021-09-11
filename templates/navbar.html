@@ -158,9 +158,15 @@
           <a href="/#service" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase"> Our Service </a
           ><a href="/#process" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase"> Our Process </a>
           <a href="/#contact" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase">Contact</a>
-          <a href="/login"><button class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium">
+          {% if session.logged_in %}
+          <a href="/dashboard" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase">Dashboard</a>
+          <a href="/logout" class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium">
+            Log Out
+        </a>
+          {% else %}
+          <a href="/login" class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium">
             Log In
-          </button></a>
+        </a>{% endif %}
         </div>
       </menu>
     </div>

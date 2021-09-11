@@ -9,3 +9,10 @@ class RegisterForm(Form):
         validators.EqualTo('confirm', message='Passwords do not match')
     ])
     confirm = PasswordField('Confirm Password')
+
+# Register Form Class
+class LogInForm(Form):
+    email = StringField('Email', [validators.Length(min=6, max=50)])
+    password = PasswordField('Password', [
+        validators.DataRequired()
+    ])
