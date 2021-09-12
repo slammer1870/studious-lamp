@@ -3,12 +3,12 @@
   <h1 class="text-3xl lg:text-6xl font-semibold uppercase mb-4">Dashboard</h1>
   <div class="h-2/3 overflow-scroll mb-4 shadow">
     <div>
-      {% for post in posts %}
+      {% for post in posts|sort(attribute="date", reverse=True)%}
       <div class="bg-gray-100 w-full max-w-screen-sm p-4 shadow-md mb-4">
         <p class="mb-4">"{{post.post}}"</p>
         <div class="flex items-center justify-between text-sm mb-4">
-          <span class="font-medium">{{post.date}}</span
-          ><span class="font-semibold">- {{[post.owner.name]}}</span>
+          <span class="font-medium">{{post.date.strftime('%Y-%m-%d')}}</span
+          ><span class="font-semibold">- {{post.owner.name}}</span>
         </div>
         {% if post.owner._id == session.user._id %}
         <div class="flex items-center justify-end">
