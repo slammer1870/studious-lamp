@@ -48,4 +48,34 @@
     </div>
   </form>
 </div>
+<div class="p-4">
+  <h1 class="text-3xl lg:text-6xl font-semibold uppercase mb-4">My Posts</h1>
+  {% for your in yours|sort(attribute="date", reverse=True) %}
+  <div>
+    <div class="bg-gray-100 w-full max-w-screen-sm p-4 shadow-md mb-4">
+      <p class="mb-4">"{{your.post}}"</p>
+      <div class="flex items-center justify-between text-sm mb-4">
+        <span class="font-medium">{{your.date.strftime('%Y-%m-%d')}}</span
+        ><span class="font-semibold">- {{your.owner.name}}</span>
+      </div>
+      <div class="flex items-center justify-end">
+        <a
+          href="/posts/edit/{{your._id}}"
+          class="bg-blue-400 text-center text-white uppercase mr-4 px-4 py-2"
+        >
+          Edit
+        </a>
+        <form action="{{url_for('delete', id=your._id)}}" method="POST">
+          <button
+            type="submit"
+            class="bg-red-400 text-center text-white uppercase px-4 py-2"
+          >
+            Delete
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}

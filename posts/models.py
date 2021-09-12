@@ -3,8 +3,6 @@ import uuid
 from datetime import datetime
 from app import db
 
-
-
 class Post:
     def create(self, form):
         post = {

@@ -32,10 +32,16 @@ class PostForm(Form):
 @login_required
 def dashboard():
     posts = db.posts.find()
+    yours = db.posts.find({"owner": session['user']})
     form = PostForm(request.form)
     if posts != 0:
-        return render_template("dashboard.html", posts=posts, form=form)
+        return render_template("dashboard.html", posts=posts, form=form, yours=yours)
     return render_template("dashboard.html", form=form)
 
 if __name__ == '__main__':
 	app.run(debug=True)
+
+class NewsletterForm(Form):
+    name = StringField('Name', [validators.Length(min=1, max=50)])
+    email = StringField('Email', [validators.Length(min=6, max=50)])
+
