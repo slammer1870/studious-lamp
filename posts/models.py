@@ -4,9 +4,9 @@ from datetime import datetime
 from app import db
 
 
+
 class Post:
     def create(self, form):
-        print(request)
         post = {
         "_id": uuid.uuid4().hex,
         "owner": session['user'],
@@ -15,3 +15,16 @@ class Post:
         }
 
         db.posts.insert_one(post)
+        return True
+
+    def edit(self, id, form):
+        db.posts.find_one_and_update({"_id": id}, {"$set": {"post": form.post.data}})
+        return True
+
+    def delete(self, id):
+        db.posts.delete_one({"_id": id})
+        return True
+
+
+
+
