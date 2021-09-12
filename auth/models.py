@@ -47,7 +47,7 @@ class User:
 
         if user and pbkdf2_sha256.verify(form.password.data, user['password']):
             self.start_session(user)
-            flash("Thank you for registering, you are now logged in!", "bg-green-400")
+            flash("Welcome back, you are now logged in!", "bg-green-400")
             return True
         
         return flash("Invalid login credentials", "bg-red-400")

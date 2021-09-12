@@ -18,7 +18,7 @@ db = client.flaskDB
 
 # Routes
 from auth import forms, routes
-#from posts import routes
+from posts import routes
 
 @app.route("/")
 def index():
@@ -32,17 +32,6 @@ class PostForm(Form):
 def dashboard():
     posts = db.posts.find()
     form = PostForm(request.form)
-    if request.method == "POST" and form.validate():
-        print("we're in", form.post.data)
-        post = {
-        "_id": uuid.uuid4().hex,
-        "owner": session["user"],
-        "date": datetime.now(),
-        "post": form.post.data
-        }
-
-        db.posts.insert_one(post)
-        return redirect(url_for('dashboard'))
     if posts != 0:
         return render_template("dashboard.html", posts=posts, form=form)
     return render_template("dashboard.html", form=form)

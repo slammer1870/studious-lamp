@@ -1,45 +1,51 @@
 {% extends "base.html" %} {% block content %}
-<div class="pt-20 p-4 min-h-screen">
+<div class="pt-20 p-4 h-screen">
   <h1 class="text-3xl lg:text-6xl font-semibold uppercase mb-4">Dashboard</h1>
   <div class="h-2/3 overflow-scroll mb-4 shadow">
-  <div class="bg-gray-100 w-full max-w-screen-sm p-4 shadow-md mb-4">
-    <p class="mb-4">"Happy Friday Everyone!"</p>
-    <div class="flex items-center justify-between text-sm mb-4">
-      <span class="font-medium">11/09/21</span
-      ><span class="font-semibold">- Sam Mc Nally</span>
+    <div class="bg-gray-100 w-full max-w-screen-sm p-4 shadow-md mb-4">
+      <p class="mb-4">"Happy Friday Everyone!"</p>
+      <div class="flex items-center justify-between text-sm mb-4">
+        <span class="font-medium">11/09/21</span
+        ><span class="font-semibold">- Sam Mc Nally</span>
+      </div>
+      <div class="flex items-center justify-end">
+        <button
+          class="bg-blue-400 text-center text-white uppercase mr-4 px-4 py-2"
+        >
+          Edit
+        </button>
+        <button class="bg-red-400 text-center text-white uppercase px-4 py-2">
+          Delete
+        </button>
+      </div>
     </div>
-    <div class="flex items-center justify-end">
-      <button
-        class="bg-blue-400 text-center text-white uppercase mr-4 px-4 py-2"
-      >
-        Edit
-      </button>
-      <button class="bg-red-400 text-center text-white uppercase px-4 py-2">
-        Delete
-      </button>
+    <div>
+      {% for post in posts %}
+      <div class="bg-gray-100 w-full max-w-screen-sm p-4 shadow-md mb-4">
+        <p class="mb-4">"{{post.post}}"</p>
+        <div class="flex items-center justify-between text-sm mb-4">
+          <span class="font-medium">{{post.date}}</span
+          ><span class="font-semibold">- {{[post.owner.name]}}</span>
+        </div>
+        <div class="flex items-center justify-end">
+          <button
+            class="bg-blue-400 text-center text-white uppercase mr-4 px-4 py-2"
+          >
+            Edit
+          </button>
+          <button class="bg-red-400 text-center text-white uppercase px-4 py-2">
+            Delete
+          </button>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
-  <div>{% for post in posts %} <div class="bg-gray-100 w-full max-w-screen-sm p-4 shadow-md mb-4">
-    <p class="mb-4">"{{post.post}}"</p>
-    <div class="flex items-center justify-between text-sm mb-4">
-      <span class="font-medium">{{post.date}}</span
-      ><span class="font-semibold">- {{[post.owner.name]}}</span>
-    </div>
-    <div class="flex items-center justify-end">
-      <button
-        class="bg-blue-400 text-center text-white uppercase mr-4 px-4 py-2"
-      >
-        Edit
-      </button>
-      <button class="bg-red-400 text-center text-white uppercase px-4 py-2">
-        Delete
-      </button>
-    </div>
-  </div> {% endfor %}</div></div>
   {% from "partials/_formhelpers.html" import render_field %}
-  <form method="POST" action="">
-  <div class="flex flex-col text-sm font-semibold">
-    {{render_field(form.post, class_="p-2 mt-1 border mb-2")}}</div>
+  <form action="{{url_for('create')}}" method="POST">
+    <div class="flex flex-col text-sm font-semibold">
+      {{render_field(form.post, class_="p-2 mt-1 border mb-2")}}
+    </div>
     <div class="flex mb-2">
       <button
         type="submit"
