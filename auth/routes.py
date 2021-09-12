@@ -5,6 +5,7 @@ from pymongo.common import validate
 from werkzeug.utils import redirect
 from auth.models import User
 from .forms import RegisterForm, LogInForm
+from wraps import login_required
 
 
 @app.route('/register/', methods=['POST', 'GET'])
@@ -26,6 +27,7 @@ def login():
     return render_template('login.html', form=form)
 
 @app.route('/logout/')
+@login_required
 def logout():
     user = User()
     return user.logout()

@@ -1,5 +1,5 @@
   
-from flask import Flask, jsonify, request, session, redirect, url_for
+from flask import Flask, jsonify, request, session, g, redirect, url_for
 from flask.helpers import flash
 from passlib.hash import pbkdf2_sha256
 from app import db
@@ -13,6 +13,7 @@ class User:
         del user['password']
         session['logged_in'] = True
         session['user'] = user
+        g.user = user
         return 200
 
     #User object register method

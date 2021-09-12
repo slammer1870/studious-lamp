@@ -1,13 +1,12 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, g, request, redirect, url_for
 import os
-from flask.globals import request
-from flask.helpers import url_for
 import pymongo
 from werkzeug.utils import redirect
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from wtforms.widgets import TextArea
 import uuid
 from datetime import datetime
+from wraps import login_required
 
 app = Flask(__name__)
 app.secret_key=os.environ.get("SECRET_KEY")
@@ -20,6 +19,7 @@ db = client.flaskDB
 from auth import forms, routes
 from posts import routes
 
+
 @app.route("/")
 def index():
 	return render_template("index.html")
@@ -29,6 +29,7 @@ class PostForm(Form):
     post = TextAreaField('Post', [validators.Length(min=1, max=180)])
 
 @app.route("/dashboard/", methods=['GET', 'POST'])
+@login_required
 def dashboard():
     posts = db.posts.find()
     form = PostForm(request.form)
