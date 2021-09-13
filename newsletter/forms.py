@@ -1,4 +1,4 @@
-featfrom wtforms import Form, StringField, validators
+from wtforms import Form, StringField, validators
 
 class NewsletterForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50)])
