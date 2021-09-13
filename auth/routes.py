@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from app import app
+from __main__ import app
 from flask.helpers import url_for
 from pymongo.common import validate
 from werkzeug.utils import redirect
