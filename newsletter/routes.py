@@ -9,7 +9,7 @@ import os
 import json
 
 
-
+#News
 @app.route("/newsletter/signup", methods=[ 'POST'])
 def newsletter():
     form = NewsletterForm(request.form)        
