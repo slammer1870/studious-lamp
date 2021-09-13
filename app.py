@@ -24,7 +24,7 @@ from posts import routes
 from newsletter import routes
 from newsletter.forms import NewsletterForm
 
-# Contact Form Class
+# Contact Form Class 
 class ContactForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50)])
     email = StringField('Email', [validators.Length(min=6, max=50)])
