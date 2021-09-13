@@ -3,7 +3,7 @@ from flask.helpers import flash, url_for
 from flask.templating import render_template
 from werkzeug.utils import redirect
 from posts.forms import PostForm
-from __main__ import app
+from app import app
 from .models import Post
 from .forms import PostForm
 from app import db
