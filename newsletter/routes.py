@@ -4,7 +4,7 @@ from werkzeug.utils import redirect
 from .forms import NewsletterForm
 import mailchimp_marketing as MailchimpMarketing
 from mailchimp_marketing.api_client import ApiClientError
-from __main__ import app
+from app import app
 import os
 import json
 
