@@ -153,19 +153,20 @@
             mt-20
             text-sm
             text-white
+            text-left
           "
         >
-          <a href="/#service" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase"> Our Service </a
-          ><a href="/#process" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase"> Our Process </a>
-          <a href="/#contact" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase">Contact</a>
+          <a href="/#service"><button class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase text-left" x-on:click="sideBar = ! sideBar">Our Service</button></a
+          ><a href="/#process"><button class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase text-left" x-on:click="sideBar = ! sideBar">Our Process</button></a>
+          <a href="/#contact" ><button class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase text-left" x-on:click="sideBar = ! sideBar">Contact</button></a>
           {% if session.logged_in %}
-          <a href="/dashboard" class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase">Dashboard</a>
-          <a href="/logout" class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium">
-            Log Out
+          <a href="/dashboard"><button class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase text-left" x-on:click="sideBar = ! sideBar">Dashboard</button></a>
+          <a href="/logout"><button  class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium"  x-on:click="sideBar = ! sideBar">
+            Log Out</button>
         </a>
           {% else %}
-          <a href="/login" class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium">
-            Log In
+          <a href="/login"  ><button class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium" x-on:click="sideBar = ! sideBar">
+            Log In</button>
         </a>{% endif %}
         </div>
       </menu>
