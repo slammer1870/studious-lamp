@@ -15,12 +15,11 @@
     {{ message }}
   </div>
 </div>
-{% endfor %} {% endif %} {% endwith %} {% if error %}
-<div class="bg-red-400 text-gray-900 p-2">{{error}}</div>
-{% endif %} {% if msg %}
-<div class="bg-green-400 text-white p-2">{{msg}}</div>
-{% endif %}
+{% endfor %} {% endif %} {% endwith %}
 
 <script>
-    window.setTimeout("document.getElementById('alert').style.display='none';", 5000)
+  window.setTimeout(
+    "document.getElementById('alert').style.display='none';",
+    5000
+  );
 </script>
