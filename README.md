@@ -140,7 +140,8 @@ Cards.\
 
 #### Custom Javascript
 There is a timeout function on the alert messages so that the dissapear after 5 seconds.
-``` <script>
+``` 
+<script>
   window.setTimeout(
     "document.getElementById('alert').style.display='none';",
     5000
