@@ -232,10 +232,10 @@ The models inputs are validated through WTForms.
 # Technologies Used
 
 - A variety of different technologies were user:
-  - [Tailwind CSS]()
-  - [Alpine JS]()
-  - [Mailchimp]()
-  - [Sendgrid]()
+  - [Tailwind CSS](https://tailwindcss.com/) - A utility first CSS Framework
+  - [Alpine JS](https://alpinejs.dev/) - A lightweight Javascript Framework
+  - [Mailchimp](https://mailchimp.com/) - An email marketing platform
+  - [Sendgrid](https://sendgrid.com/) - An email delivery API
   - [MongoDB](https://www.mongodb.com/cloud/atlas)- a fully-managed cloud database used to store manage and query data sets
   
 Please note, if this gets more than 5 items, you may want to break it down into logical subsections
