@@ -16,7 +16,7 @@ app.secret_key=os.environ.get("SECRET_KEY")
 
 # Database
 client = pymongo.MongoClient(os.environ.get("MONGO_URI"))
-db = client.flaskDB
+db = client[str(os.environ.get("DB_NAME"))]
 
 # Routes
 from auth import forms, routes
