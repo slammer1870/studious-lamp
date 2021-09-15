@@ -4,6 +4,7 @@ import pymongo
 from werkzeug.utils import redirect
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from wtforms.widgets import TextArea
+from wtforms.fields.html5 import EmailField
 import uuid
 from datetime import datetime
 from wraps import login_required
@@ -26,9 +27,9 @@ from newsletter.forms import NewsletterForm
 
 # Contact Form Class 
 class ContactForm(Form):
-    name = StringField('Name', [validators.Length(min=1, max=50)])
-    email = StringField('Email', [validators.Length(min=6, max=50)])
-    message = TextAreaField('Message', [validators.Length(min=1, max=180)])
+    name = StringField('Name', [validators.Length(min=1, max=50), validators.DataRequired()])
+    email = EmailField('Email', [validators.Length(min=6, max=50), validators.DataRequired(), validators.Email()])
+    message = TextAreaField('Message', [validators.Length(min=1, max=180), validators.DataRequired()])
 
 @app.route("/")
 def index():
@@ -66,7 +67,7 @@ def contact():
 
 # Post Form Class
 class PostForm(Form):
-    post = TextAreaField('Post', [validators.Length(min=1, max=180)])
+    post = TextAreaField('Post', [validators.DataRequired(), validators.Length(min=1, max=180)])
 
 @app.route("/dashboard/", methods=['GET', 'POST'])
 #Login required decorator
@@ -81,8 +82,4 @@ def dashboard():
 
 if __name__ == '__main__':
 	app.run(debug=True)
-
-class NewsletterForm(Form):
-    name = StringField('Name', [validators.Length(min=1, max=50)])
-    email = StringField('Email', [validators.Length(min=6, max=50)])
 
