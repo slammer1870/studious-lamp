@@ -14,13 +14,13 @@ This site is design with a landing page for lead capturing as well as a user mes
 ## HOW TO USE
 To use this website the steps are as follows.
 
-- Step 1: Login, if user does not have an account they can login by clicking the "Click here to register" link on the login form.
+- Step 1: Login, if user does not have an account they can login by clicking the "Click here to register" link on the login form.\
 ![image](https://user-images.githubusercontent.com/42610577/133413663-9bf0bf65-2737-40b0-941c-51a9026b6b35.png)
-- Step 2: Once logged in a user will be redirected to the dashboard, a success message will flash to say that they have logged in.
+- Step 2: Once logged in a user will be redirected to the dashboard, a success message will flash to say that they have logged in.\
 ![image](https://user-images.githubusercontent.com/42610577/133413946-2b3e6f16-88ca-4990-b2a1-05218e03000c.png)
-- Step 3: Users can create posts by filling this the create post form. Each post object has the property of "Owner" set to the user by default to allow for permission controls so that only the owner of a post can edit of delete it.
+- Step 3: Users can create posts by filling this the create post form. Each post object has the property of "Owner" set to the user by default to allow for permission controls so that only the owner of a post can edit of delete it.\
 ![image](https://user-images.githubusercontent.com/42610577/133414066-3b644c07-dad5-491e-a08a-25c5e9965430.png)
-- Step 4: Users can edit or delete their posts by clicking on the edit or delete buttons that show up on the posts they own. All of a users posts are shown in the "My Posts" section if they scroll down past the message form.
+- Step 4: Users can edit or delete their posts by clicking on the edit or delete buttons that show up on the posts they own. All of a users posts are shown in the "My Posts" section if they scroll down past the message form.\
 ![image](https://user-images.githubusercontent.com/42610577/133414333-26fce672-0e6d-4970-97c6-61a8ed878a46.png)
 
 ### Unauthenticated User
