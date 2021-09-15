@@ -207,7 +207,8 @@ db = client[str(os.environ.get("DB_NAME"))]
 The two data models are User and Post
 
 User:
-``` user = {
+``` 
+user = {
         "_id": uuid.uuid4().hex,
         "name": form.name.data,
         "email": form.email.data,
@@ -216,7 +217,8 @@ User:
 ```
 
 Post:
-``` post = {
+``` 
+post = {
         "_id": uuid.uuid4().hex,
         "owner": session['user'], #foreignkey to current logged in user
         "date": datetime.now(),
