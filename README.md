@@ -191,7 +191,7 @@ If you end up not developing some features you hoped to implement, you can inclu
 
 
 # Information Architecture
-![image](https://user-images.githubusercontent.com/42610577/133426773-4e32efe4-c5a1-4664-81e4-b62f47a1cdc2.png)
+![image](https://user-images.githubusercontent.com/42610577/133450291-1eb75c9a-2f4e-45d1-ac2b-9628ddab542d.png)
 
 ## Database Choice
 MongoDB Atlas was user for both production and local development.
