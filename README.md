@@ -1,124 +1,136 @@
-# PROJECT_NAME
+# ExecBJJ Website
+![image](https://user-images.githubusercontent.com/42610577/133406469-cfa248d1-02d7-4d19-b337-c19859cc5578.png)
+[Live Deployed Website](https://stark-earth-52954.herokuapp.com/)
 
-*replace the **PROJECT NAME** header with your project's name*
-- Screenshot of logo/navigation of mobile deployed site
-- Include a link to deployed project with one line explanation of project
 
-- (optional) Include a travis build status if you hooked up automated builds
-[![Travis Automated Builds](https://docs.travis-ci.com/user/tutorial/)
 
 ## Author
-DEVELOPER_NAME
+Sam Mc Nally
 
 
 ## Project Overview
-- Include a picture of site that shows it in responsive states and links to deployed code: http://ami.responsivedesign.is/
-- One or two paragraphs providing an overview of your project.
-- Write this as a sales pitch or commercial making users want to purchase your website.
-- Include a link to your deployed website
+This site is design with a landing page for lead capturing as well as a user message board for authenticated users. Users can create an account, login, post messages on the message board, edit and delete this messages as well as being able to sign up for newsletter updates and sumbit queries through a contact form. 
 
 ## HOW TO USE
-This project requires DATA INTERACTION, if you set up user authentication, you should include example accounts to use in your heroku deployment so the assessors can use your site. 
+To use this website the steps are as follows.
 
+- Step 1: Login, if user does not have an account they can login by clicking the "Click here to register" link on the login form.
+![image](https://user-images.githubusercontent.com/42610577/133413663-9bf0bf65-2737-40b0-941c-51a9026b6b35.png)
+- Step 2: Once logged in a user will be redirected to the dashboard, a success message will flash to say that they have logged in.
+![image](https://user-images.githubusercontent.com/42610577/133413946-2b3e6f16-88ca-4990-b2a1-05218e03000c.png)
+- Step 3: Users can create posts by filling this the create post form. Each post object has the property of "Owner" set to the user by default to allow for permission controls so that only the owner of a post can edit of delete it.
+![image](https://user-images.githubusercontent.com/42610577/133414066-3b644c07-dad5-491e-a08a-25c5e9965430.png)
+- Step 4: Users can edit or delete their posts by clicking on the edit or delete buttons that show up on the posts they own. All of a users posts are shown in the "My Posts" section if they scroll down past the message form.
+![image](https://user-images.githubusercontent.com/42610577/133414333-26fce672-0e6d-4970-97c6-61a8ed878a46.png)
 
 ### Unauthenticated User
-- Username and password for a user that is established in the system (set up this user to have some order history)
+Unauthenticated Users can access the landing page, login page and registration page. The site is built with access controls to stop unauthenticated users from accessing the dashboard as well as posting, post editing and post deleting functionality.
+- A login Flask decorator is used to check that if the session object does not contain the property of logged in, the user will be redirected to a login page.
+
+``` def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'logged_in' not in session:
+            flash("You must be logged in to access", "bg-red-400")
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+```
 
 ### Standard User
-- Username and password for a user that is established in the system (set up this user to have some order history)
+- A standard user can make posts to the message board. By default, each post object has the property of "Owner" set to the user by default to allow for permission controls so that only the owner of a post can edit of delete it.
+
+When a new user is created the user property in the session object is assigned as the value of "Owner.
+
+``` class Post:
+    def create(self, form):
+        post = {
+        "_id": uuid.uuid4().hex,
+        "owner": session['user'],
+        "date": datetime.now(),
+        "post": form.post.data
+        }
+
+        db.posts.insert_one(post)
+        return True
+```
+        
+Permission controls at the route level are then implemented to limit editing and deleting to that of the post owner.
+
+``` @app.route('/posts/edit/<string:id>', methods=['GET', 'POST'])
+@login_required
+def edit(id):
+    form = PostForm(request.form)
+    post = db.posts.find_one({"_id": id})
+    if session['user']['_id'] == post['owner']['_id']:
+        form.post.data = post['post']
+        if request.method == "POST" and form.validate():
+            post = Post()
+            new_form = PostForm(request.form)
+            post.edit(id, new_form)
+            flash("Post has been updated", "bg-yellow-400")
+            return redirect(url_for('dashboard'))
+        return render_template("edit_post.html", form=form)
+    flash("Permission denied, you must be the owner of this post to edit", "bg-yellow-400")
+    return redirect(url_for('dashboard'))
+```
 
 ### Admin User
-- only necessary if some functionality is limited to admin users only
+- Currently there is no permission restricted only to admin users via the interface of the website.
 
 # Table of Contents
 Copy your readme to http://ecotrust-canada.github.io/markdown-toc/ to make a table of contents.  This will help assessors to see the structure of your readme. Just test it out ast this tool isn't perfect. It tends to mess up with special characters like dashes.
 
 ## UX
+As this is a CRUD based application the key UX features for this site are clear and defined input for accessability. Examples of this can be seen on the edit and delete buttons for posts.\
+![image](https://user-images.githubusercontent.com/42610577/133416933-fef1c338-7447-4de6-8aa0-adac275e7bd1.png)
 
 ### Strategy
-Talk about how you landed on your final idea and how you see this idea being useful to both users and site owners.
-
-### Scope
-Talk about long term plans of ths site and what lead you to the MVP (Minimal Viable Product) you delivered.
+The strategy behind this website is to use of for a company that I own that is in the process of opening back up after being shut for over a year.
 
 ### Project Goals
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+The goal of this project is to deliver a simple, user friendly and intuitive application that allows user to create, read, update and delete message postings limited to 180 characters.
 
 #### User Goals
-
-Write goals form the perspective of each user group of your website. Common types of users are:
-> - new users
-> - existing users
-> - admins 
-> - logged in user
-> - unauthenticated user
-> - followers
+As a user I want to have a clear and intuitive experience through out the application with consisten visual feedback in the form of flashed messages as I interact with the website.
 
 #### Developer Goals
-
-List out the goals as a developer you hope to achieve by making this website. 
+As a developer I aim to produce an CRUD application with User Authentication as well as a defensive programming design strategy to ensure that user's data is protected.
 
 #### Website Owner Goals
-
-List out any goals a website owner would have for this website. You may not develop them, but investors would want to know how they could make money.
-
-[Back To Table of Contents](#table-of-contents)
+As a product owner I aim to have a piece of software that is built with clean foundational architecture that provides for the ability to add more directly monetisable features like premium membership content a payment integrations into the site in the near future.
 
 
 ### User Stories
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-
-As a user type, I want to perform an action, so that I can achieve a goal.
-
-
-[Back To Table of Contents](#table-of-contents)
+As a User I want to be able to sign up to a newsletter, submit queries via a contact form, create an account, login, make posts, edit posts, delete posts.
 
 
 ### Design Choices
-Your site is most likely geared to a certain audience, and your design choices should tie into them. Let the assessors know your thought process.
+The most prominent design choices in this application are to be found in the visual feedback of the alert messages with Green being used for success messages, Yellow for standard operations like post editing and Red for error messages.
 
-You may want to re-watch the videos about the [5 planes of UX development ](https://learn.codeinstitute.net/courses/course-v1:codeinstitute+FE+2017_T3/courseware/22905698f3be425d918ebc64c87801b7/9c295bdc5a4048308460e262b14ab7df/) when writing up this section
+As well as this providing users with their own data aggregated into the "My Posts" section is design to that users can access their posts directly from the message board and have the posts that they own filtered in the "My Posts" section.
 
 #### Colors
-
-- Discuss your color pallet choices and how it ties into users' emotions or target audience.
-- include a screenshot of your pallet using a tool like coolors.co
+The colours used in this project are simple Greys and Black for structual elements of the pages, Red and Blue for the edit and delete button and Green, Yellow and Red for visual feedback in the alert messages depening on the nature of the interaction.
 
 #### Typography
-
-- discuss font size, font types for headers vs buttons vs general text and how it ties into users' emotions or target audience.
-- include screenshots of fonts used and links to the appropriate website ex) https://fonts.google.com/specimen/Raleway
+The typography used is Helvetica. I initially wanted to use Montserrat but I found that Helvetica translated across devices better than Montserrat.
 
 #### Images
-
-Explain why you used certain icons and images on your site
+The images used are all relating to the activities of the company. They are mostly high quality JPEGs.
 
 #### Design Elements
 
-- list out the type of elements you want to use on your site, this will help you  when choosing a framework and goes hand in hand when doing the wireframes. If you did something out of the ordinary, or think something was particularly clever, add a sentence and a screenshot or reference the file the code or css is in.
+Forms.\
+![image](https://user-images.githubusercontent.com/42610577/133421600-c847bf60-a61a-4e50-9efe-48909b2d5563.png)
 
-> - desktop navigation
-> - mobile navigation
-> - footer
-> - containers/cards
-> - buttons
-> - text input
-> - textarea inputs
-> - dropdowns
-> - modals/layers
-> - check boxes
-> - switches
-> - accordions/drawers
-> - pagination
-> - date pickers
-> - maps
-> - images
-> - tooltips
-> - icons
-> - tabbed content
-> - file pickers
-> - video players
-> - audio players
+Input Buttons.\
+![image](https://user-images.githubusercontent.com/42610577/133421767-1c1e08df-602c-4b66-aec0-11bc2ef7ef14.png)
+![image](https://user-images.githubusercontent.com/42610577/133416933-fef1c338-7447-4de6-8aa0-adac275e7bd1.png)
+
+Cards.\
+![image](https://user-images.githubusercontent.com/42610577/133421909-4859cdd9-ab79-4dda-ba73-dcc03479b64f.png)
+
 
 #### Animations and Transitions
 
@@ -127,20 +139,40 @@ Explain why you used certain icons and images on your site
 
 
 #### Custom Javascript
-- call attention to any custom javascript you created to help your User Experience you can organize this by functions or files
+There is a timeout function on the alert messages so that the dissapear after 5 seconds.
+``` <script>
+  window.setTimeout(
+    "document.getElementById('alert').style.display='none';",
+    5000
+  );
+</script>
+ ```
 
 ### Wireframes
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in a separate directory), or  hosted elsewhere online and can be in any format that is viewable inside the browser.
+I built full mobile and desktop mockups using Adobe XD.\
+![image](https://user-images.githubusercontent.com/42610577/133422184-ef3cb867-7ee6-4a68-8f64-f924d112ab0e.png)
 
-- You should minimally have wireframes for desktop and mobile. Adding a Tablet view
-
-
-[Back To Table of Contents](#table-of-contents)
 
 ### Features
+Lead capture form.\
+![image](https://user-images.githubusercontent.com/42610577/133422290-92cba907-24b7-4200-9edd-c9c18f378f0d.png)
 
-In this section, you should go over the different features of your project, and describe each in a sentence or so along with a screenshot. 
+Contact form.\
+![image](https://user-images.githubusercontent.com/42610577/133422362-b50e0daa-b446-4a27-8de2-2aed01a22fe3.png)
+
+Login page.\
+![image](https://user-images.githubusercontent.com/42610577/133422473-d04628b3-b5da-4d6d-8f0c-4e6f5d384c04.png)
+
+Registration page.\
+![image](https://user-images.githubusercontent.com/42610577/133422519-a8c4ce11-0085-4230-8c24-cd24d763f13f.png)
+
+Dashboard with post form.\
+![image](https://user-images.githubusercontent.com/42610577/133422600-286dce18-91b8-41f4-a483-03100506b733.png)
+
+User's posts section.\
+![image](https://user-images.githubusercontent.com/42610577/133422675-2dab0d0a-0a1a-4cc4-899b-41e921e93694.png)
+
 
 #### Implemented Features
 
@@ -307,6 +339,8 @@ Some defects are more pesky than others. Highlight 3-5 of the bugs that drove yo
 
 ### Outstanding Defects
 It's ok to not resolve all the defects you found. If you know of something that isn't quite right, list it out and explain why you chose not to resolve it.
+
+### Validation
 
 ## Deployment
 
