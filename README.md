@@ -319,7 +319,7 @@ Baic penetration testing was done to ensure that unauthenticated users can't acc
 #### Result
 User is redirected to the login page with the dashboard url set as the value of the "next" paramater in the current url - ***passed*** \
 A response telling the user the log in is returned - ***passed*** \
-A response telling the user the log in is returned - ***passed*** \
+A response telling the user the log in is returned - ***passed*** 
 
 #### Testing Role Based Permissions
     1. Using the post ID of a post not owned the current authenticated user by try to access "/posts/edit/<id of post not owned by current user>"
@@ -327,7 +327,7 @@ A response telling the user the log in is returned - ***passed*** \
   
 #### Result
 User is redirected to Dashboard and message saying permission denied is displayed - ***passed*** \
-User is redirected to Dashboard and message saying permission denied is displayed - ***passed*** \
+User is redirected to Dashboard and message saying permission denied is displayed - ***passed*** 
 
 ### Validation Testing
 
