@@ -41,6 +41,7 @@ def index():
 #Route to handle contact from submission using the sendgrid API
 @app.route("/contact/", methods=['POST'])
 def contact():
+    news = NewsletterForm(request.form)
     form = ContactForm(request.form)        
     if request.method == 'POST' and form.validate(): #Check form post data is valid
         message = Mail(
@@ -62,7 +63,7 @@ def contact():
             flash("Oops something went wrong", "bg-red-400")
             return redirect(url_for('index'))
     flash("Oops something went wrong", "bg-red-400")
-    return redirect(url_for('index'))
+    return render_template("index.html", form=news, contact=form)
 
 
 # Post Form Class
