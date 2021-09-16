@@ -132,12 +132,6 @@ Cards.\
 ![image](https://user-images.githubusercontent.com/42610577/133421909-4859cdd9-ab79-4dda-ba73-dcc03479b64f.png)
 
 
-#### Animations and Transitions
-
-- discuss any special animations or transitions you've programmed 
-- special hover state effects
-
-
 #### Custom Javascript
 There is a timeout function on the alert messages so that the dissapear after 5 seconds.
 ``` 
