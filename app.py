@@ -29,7 +29,7 @@ from newsletter.forms import NewsletterForm
 class ContactForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50), validators.DataRequired()])
     email = EmailField('Email', [validators.Length(min=6, max=50), validators.DataRequired(), validators.Email()])
-    message = TextAreaField('Message', [validators.Length(min=1, max=180), validators.DataRequired()])
+    message = TextAreaField('Message', [validators.Length(min=4, max=180, message='Message must be between 4 and 180 characters'), validators.DataRequired()])
 
 @app.route("/")
 def index():
@@ -68,7 +68,7 @@ def contact():
 
 # Post Form Class
 class PostForm(Form):
-    post = TextAreaField('Post', [validators.DataRequired(), validators.Length(min=1, max=180)])
+    post = TextAreaField('Post', [validators.DataRequired(), validators.Length(min=1, max=180, message='Post must be between 4 and 180 characters')])
 
 @app.route("/dashboard/", methods=['GET', 'POST'])
 #Login required decorator
