@@ -19,21 +19,25 @@ def create():
         flash("New post has been created", "bg-yellow-400")
         return redirect(url_for('dashboard'))
     flash("An error occured, post not created", "bg-red-400")
-    return redirect(url_for('dashboard'))
+    return render_template("dashboard.html", form=form, posts=db.posts.find(), yours=db.posts.find({"owner": session['user']})
+)
+
 
 @app.route('/posts/edit/<string:id>', methods=['GET', 'POST'])
 @login_required
 def edit(id):
     form = PostForm(request.form)
     post = db.posts.find_one({"_id": id})
-    if session['user']['_id'] == post['owner']['_id']:
-        form.post.data = post['post']
-        if request.method == "POST" and form.validate():
-            post = Post()
-            new_form = PostForm(request.form)
-            post.edit(id, new_form)
-            flash("Post has been updated", "bg-yellow-400")
-            return redirect(url_for('dashboard'))
+    if post :
+        if session['user']['_id'] == post['owner']['_id']:
+            form.post.data = post['post']
+            if request.method == "POST" and form.validate():
+                post = Post()
+                new_form = PostForm(request.form)
+                post.edit(id, new_form)
+                flash("Post has been updated", "bg-yellow-400")
+                return redirect(url_for('dashboard'))
+            return render_template("edit_post.html", form=form)
         return render_template("edit_post.html", form=form)
     flash("Permission denied, you must be the owner of this post to edit", "bg-yellow-400")
     return redirect(url_for('dashboard'))
@@ -42,10 +46,11 @@ def edit(id):
 @login_required
 def delete(id):
     post = db.posts.find_one({"_id": id})
-    if session['user']['_id'] == post['owner']['_id']:
-        post = Post()
-        post.delete(id)
-        flash("Post has been deleted", "bg-yellow-400")
-        return redirect(url_for('dashboard'))
+    if post :
+        if session['user']['_id'] == post['owner']['_id']:
+            post = Post()
+            post.delete(id)
+            flash("Post has been deleted", "bg-yellow-400")
+            return redirect(url_for('dashboard'))
     flash("Permission denied, you must be the owner of this post to delete", "bg-yellow-400")
     return redirect(url_for('dashboard'))

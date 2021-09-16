@@ -14,7 +14,6 @@ import json
 def newsletter():
     form = NewsletterForm(request.form)        
     if request.method == 'POST' and form.validate():
-        print("form is valid")
         try:
             client = MailchimpMarketing.Client()
             client.set_config({
