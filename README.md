@@ -302,6 +302,7 @@ The models inputs are validated through WTForms.
 - [Markdown](https://www.markdownguide.org/) Documentation within the readme was generated using markdown
 
 ## Fonts
+ - [Montserrat](https://fonts.google.com/?query=montserrat)
  - [Helvtica](https://fonts.google.com/?query=helvetica)
 
 ## Tools
@@ -380,8 +381,8 @@ User is redirected to Dashboard and message saying permission denied is displaye
 
 ### Validation Testing
 
-- [CSS Validator](https://jigsaw.w3.org/css-validator/) Note, any error associated with root: color variables were ignored.
-- [HTML Validator](https://validator.w3.org/)
+- [CSS Validator](https://jigsaw.w3.org/css-validator/) 
+- [HTML Validator](https://validator.w3.org/) Note, because Alpine JS manipulate html element by placing aditional attributes on them such as "x-data" or ":class", there are returned as errors by the validator.
 
 ### Cross Browser and Cross Device Testing
 
