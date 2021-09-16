@@ -441,10 +441,12 @@ Much of the app has been tested manually as follows:
 #### 9. Conditional Rendering:
     1. As an unauthenitaced user check that navbar only displays Log In Button.
     2. As an authenitaced user check that navbar  displays Dashboard and Log Out Button.
+    3. Only an Onwer of a post can see Edit and Delete buttons on posts
  
 ##### Results
 * Log In Button appears in navbar but not Dashboard or Log Out Buttons - ***passed***
 * Dashboard and Log Out Buttons appears in navbar but not Log In Button - ***passed***
+* Post card only show Edit and Delete buttons for post owner - ***passed***
 
 ### Defect Tracking
 
