@@ -334,6 +334,34 @@ For any scenarios that have not been automated, test the user stories manually a
     1. Go to the Registration page.
     2. Try to submit the empty form and verify that an error message about the required fields appears.
     3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
+    4. Try to submit form with mismatched passwords and verify mismatched password message.
+    5. Try to submit the form with all inputs valid and verify that a success message appears.
+
+##### Results
+* Registration Page loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Form requests email address with '@' sybmol be entered - ***passed***
+* Form returns success message - ***passed***
+* Form returns message stating that user is already subscribed - ***passed***
+
+#### 4. Login Page:
+    1. Go to the Login page.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
+    4. Try to submit form with invalid credentials and verify error shows.
+    5. Try to submit the form with all inputs valid and verify that a success message appears.
+
+##### Results
+* Login Page loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Form requests email address with '@' sybmol be entered - ***passed***
+* Form returns success message - ***passed***
+* Form returns message stating that user is already subscribed - ***passed***
+
+#### 5. Dashboard Page:
+    1. Go to the Registration page.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
     4. Try to submit form with mismatched passwords.
     5. Try to submit the form with all inputs valid and verify that a success message appears.
 
@@ -343,53 +371,143 @@ For any scenarios that have not been automated, test the user stories manually a
 * Form requests email address with '@' sybmol be entered - ***passed***
 * Form returns success message - ***passed***
 * Form returns message stating that user is already subscribed - ***passed***
-    
-Here is a [Manual Testing Template](https://docs.google.com/spreadsheets/d/189VpSeEG9oevSRhvb2WZl8zCk9L3s2iWQyrJ_1jjAGQ/edit?usp=sharing) that you can use as a starting point to keep track of your testing efforts. Make a copy of it in your own account and update as needed to reflect the browsers you are testing and features.  
 
-It's ok to spot check specific functionality across devices and browsers but each page should be viewed as a whole for each device/browser combo at least once.
+#### 6. Post Edit Functionality:
+    1. Go to the Registration page.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
+    4. Try to submit form with mismatched passwords.
+    5. Try to submit the form with all inputs valid and verify that a success message appears.
 
-A quick way to check if items are exceeding the screen width of a project is to run this javascript in the console for various screen emulations:
+##### Results
+* Post Edit  - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Form requests email address with '@' sybmol be entered - ***passed***
+* Form returns success message - ***passed***
+* Form returns message stating that user is already subscribed - ***passed***
 
-```
-var docWidth = document.documentElement.offsetWidth;
-[].forEach.call(document.querySelectorAll('*'),function(el){if(el.offsetWidth > docWidth){console.log(el);}});
-```
+#### 7. Post Delete Functionality:
+    1. Go to the Registration page.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
+    4. Try to submit form with mismatched passwords.
+    5. Try to submit the form with all inputs valid and verify that a success message appears.
+
+##### Results
+* Registration Page loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Form requests email address with '@' sybmol be entered - ***passed***
+* Form returns success message - ***passed***
+* Form returns message stating that user is already subscribed - ***passed***
+
+#### 8. Logout Functionality:
+    1. Go to the Registration page.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
+    4. Try to submit form with mismatched passwords.
+    5. Try to submit the form with all inputs valid and verify that a success message appears.
+
+##### Results
+* Registration Page loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Form requests email address with '@' sybmol be entered - ***passed***
+* Form returns success message - ***passed***
+* Form returns message stating that user is already subscribed - ***passed***
 
 ### Defect Tracking
 
-You should mention  any  bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-Here is a [Defect Tracking Template](https://docs.google.com/spreadsheets/d/1tYB4X4wTCNEW_Y1no3hsGbclh2bLokl_I5Ev3s5EuJA/edit?usp=sharing) you use as a starting point to track defects. Make a copy of the sheet to your own account and update the Features sheet to match your project. 
-
-
 ### Defects of Note
-Some defects are more pesky than others. Highlight 3-5 of the bugs that drove you the most nuts and how you finally ended up resolving them.
-
-
-### Outstanding Defects
-It's ok to not resolve all the defects you found. If you know of something that isn't quite right, list it out and explain why you chose not to resolve it.
-
-### Validation
+The absolute position of the form on index, login and register can overlap the div below if the screen height is very small or push by other browser elements on mobile.
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages).
-
-In particular, you should provide all details of the differences between the deployed version, and the development version, if any.
-
-Remember to use proper markdown for commands and enumerated steps.
-
 ### Deploy Locally
 
-Write out the steps you take starting from cloning the repository in github or clicking a gitpod button to run your code locally. Test it out and make sure it works. This can be running from your IDE of choice like VSCode or PyCharm or GitPod.
+To deploy locally:
 
-You may want to re-watch the videos when writing up this section.
+1. In the terminal run the command
+``` 
+git clone https://github.com/slammer1870/studious-lamp.git 
+```
+2. In the root directory create your virtual environment and run
+```
+pip install -r requirements.txt
+```
+3. Create a .env file with the environemnt variables:\
+> |        Variable       	|   Setting  	|
+>|:---------------------:	|:----------:	|
+>| MONGO_URI                | YOUR_KEY   	|
+>| DB_NAME            	    | YOUR_KEY   	|
+>| SECRET_KEY        	    | YOUR_KEY   	|
+>| MAILCHIMP_API_KEY        | YOUR_KEY    	|
+>| MAILCHIMP_SERVER 	    | YOUR_KEY  	|
+>| MAILCHIMP_LIST_ID        | 5000       	|
+>| SECRET_KEY            	| YOUR_KEY  	|
+>| SENDGRID_API_KEY    	    | YOUR_KEY  	|
+
+4. Go to Project Root>Auth>Routes.py and change:
+```
+from app import app
+```
+to
+```
+from __main__ import app
+```
+5. Go to Project Root>Posts>Routes.py and change:
+```
+from app import app
+```
+to
+```
+from __main__ import app
+```
+6. Go to Project Root>Newsletter>Routes.py and change:
+```
+from app import app
+```
+to
+```
+from __main__ import app
+```
+7. Run
+```
+python app.py
+```
 
 ### Deploy To Heroku
+To deploy to Heroku:
 
-Write out steps you would take and test them to deploy your code to Heroku. Include a table of configuration variables as needed in your settings.py file without exposing your own values. Include links to users on how to set up such accounts for AWS, STRIPE or other programs.  
-
-You may want to re-watch the videos when writing up this section.
+1. In the terminal run the command
+``` 
+git clone https://github.com/slammer1870/studious-lamp.git 
+```
+2. Login to Heroku and set up a new app
+3. Under the Settings tab, click Reveal Config Vars
+4. Set the config variables to be:
+> |        Variable       	|   Setting  	|
+>|:---------------------:	|:----------:	|
+>| MONGO_URI                | YOUR_KEY   	|
+>| DB_NAME            	    | YOUR_KEY   	|
+>| SECRET_KEY        	    | YOUR_KEY   	|
+>| MAILCHIMP_API_KEY        | YOUR_KEY    	|
+>| MAILCHIMP_SERVER 	    | YOUR_KEY  	|
+>| MAILCHIMP_LIST_ID        | 5000       	|
+>| SECRET_KEY            	| YOUR_KEY  	|
+>| SENDGRID_API_KEY    	    | YOUR_KEY  	|
+5. Log in to Heroku, you can do this by running
+```
+heroku login
+```
+6. Clone the heroku repository
+```
+heroku git:clone -a 'your_app_name'
+```
+7. Add your files, commit and push to Heorku main:
+```bash
+$ git add .
+$ git commit -am "initial heroku commit" 
+$ git push heroku main
+```
 
 ## Credits
 
