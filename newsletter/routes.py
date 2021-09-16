@@ -9,24 +9,26 @@ import os
 import json
 
 
-#News
+#Newsletter signup route
 @app.route("/newsletter/signup", methods=[ 'POST'])
 def newsletter():
     form = NewsletterForm(request.form)        
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST' and form.validate(): #Checks that form posts valid data
         try:
-            client = MailchimpMarketing.Client()
+            client = MailchimpMarketing.Client() #Configures Mailchimp client
             client.set_config({
             "api_key": os.environ.get("MAILCHIMP_API_KEY"),
             "server": os.environ.get("MAILCHIMP_SERVER")
         })
 
+            #Adds poster to newsletter
             client.lists.add_list_member(os.environ.get("MAILCHIMP_LIST_ID"), {"email_address": form.email.data, "status": "subscribed", "tags":["lead"]})
             flash("Thank you for subscribing", "bg-green-400")
             return redirect(url_for('index'))
         except ApiClientError as error:
             print(error.text)
             res = json.loads(error.text)
+            #Custom condition for users that are already subscribed
             if res['title'] == "Member Exists":
                 flash("You are already subscribed!", "bg-yellow-400")
                 return redirect(url_for('index'))

@@ -2,6 +2,8 @@ from functools import wraps
 from flask import session, request, redirect, url_for
 from flask.helpers import flash
 
+
+#Login Required Decorator
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):

@@ -161,6 +161,7 @@
           <a href="/#service"><button class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase text-left" x-on:click="sideBar = ! sideBar">Our Service</button></a
           ><a href="/#process"><button class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase text-left" x-on:click="sideBar = ! sideBar">Our Process</button></a>
           <a href="/#contact" ><button class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase text-left" x-on:click="sideBar = ! sideBar">Contact</button></a>
+          <!--Buttons rendered conditionally is user is logged in or not-->
           {% if session.logged_in %}
           <a href="/dashboard"><button class="md:mb-0 md:mr-8 lg:mr-16 mb-4 uppercase text-left" x-on:click="sideBar = ! sideBar">Dashboard</button></a>
           <a href="/logout"><button  class="uppercase bg-gray-200 px-6 py-2 text-center text-black font-medium"  x-on:click="sideBar = ! sideBar">

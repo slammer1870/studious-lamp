@@ -1,5 +1,5 @@
   
-from flask import Flask, jsonify, request, session, g, redirect, url_for
+from flask import Flask, session, g, redirect, url_for
 from flask.helpers import flash
 from passlib.hash import pbkdf2_sha256
 from app import db
@@ -9,6 +9,7 @@ import uuid
 
 class User:
 
+    #Method to start a new session
     def start_session(self, user):
         del user['password']
         session['logged_in'] = True
@@ -35,17 +36,20 @@ class User:
             flash("User already exists", "bg-red-400")
             return False
 
+        #Creates the new user and starts session
         if db.users.insert_one(user):
             self.start_session(user)
             flash("Thank you for registering, you are now logged in!", "bg-green-400")
             return True
 
+    #Login method
     def login(self, form):
 
         user = db.users.find_one({
         "email": form.email.data
         })
 
+        #Checks that encrypted password is valid
         if user and pbkdf2_sha256.verify(form.password.data, user['password']):
             self.start_session(user)
             flash("Welcome back, you are now logged in!", "bg-green-400")
@@ -53,6 +57,7 @@ class User:
         
         return flash("Invalid login credentials", "bg-red-400")
 
+    #Logout method
     def logout(self):
         session.clear()
         flash("You have been succesfully logged out", "bg-green-400")

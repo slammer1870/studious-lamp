@@ -42,7 +42,7 @@ def index():
 @app.route("/contact/", methods=['POST'])
 def contact():
     form = ContactForm(request.form)        
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST' and form.validate(): #Check form post data is valid
         message = Mail(
             from_email='hello@sammcnally.dev',
             to_emails='hello@sammcnally.dev',
@@ -50,7 +50,7 @@ def contact():
             plain_text_content=form.message.data)
         message.reply_to=form.email.data, form.name.data
         try:
-            sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+            sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY')) #Initialises Sendgrid Client
             response = sg.send(message)
             print(response.status_code)
             print(response.body)
