@@ -4,10 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ExecBJJ landing page and membership site">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+    <meta
+      name="description"
+      content="ExecBJJ landing page and membership site"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.png') }}"
+    />
     <!--Alpine JS Include-->
-    <script src="//unpkg.com/alpinejs"></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.3.4/dist/cdn.min.js"
+    ></script>
     <!--Tailwind CSS Link-->
     <link
       rel="stylesheet"
@@ -17,10 +26,9 @@
   </head>
   {% include "navbar.html" %}
   <body>
-  <!--Messages are included here-->
-    {% include 'partials/_messages.html' %} 
-    {% block content %}
-    {% endblock content %}
+    <!--Messages are included here-->
+    {% include './_messages.html' %} {% block content %} {% endblock
+    content %}
   </body>
   {% include "footer.html" %}
 </html>
