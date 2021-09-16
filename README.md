@@ -359,7 +359,7 @@ def edit(id):
 ## Testing
 
 ### Penetration Testing
-Baic penetration testing was done to ensure that unauthenticated users can't access authenticated content and that permissionless users can't edit role based permission functions.
+Basic penetration testing was done to ensure that unauthenticated users can't access authenticated content and that permissionless users can't edit role based permission functions.
 
 #### Testing Authenticated Routes
     1. Without logging in attempt to access the url "/dashboard"
@@ -415,7 +415,7 @@ Much of the app has been tested manually as follows:
 ##### Results
 * Index Page loads - ***passed***
 * Form return visual feedback for required fields - ***passed***
-* Form requests email address with '@' sybmol be entered - ***passed***
+* Form requests email address with '@' symbol be entered - ***passed***
 * Form returns success message - ***passed***
 * Form returns message stating that user is already subscribed - ***passed***
 
@@ -428,7 +428,7 @@ Much of the app has been tested manually as follows:
 ##### Results
 * Index Page loads - ***passed***
 * Form return visual feedback for required fields - ***passed***
-* Form requests email address with '@' sybmol be entered - ***passed***
+* Form requests email address with '@' symbol be entered - ***passed***
 * Form returns success message - ***passed***
 
 #### 3. Registration Page:
@@ -441,7 +441,7 @@ Much of the app has been tested manually as follows:
 ##### Results
 * Registration Page loads - ***passed***
 * Form return visual feedback for required fields - ***passed***
-* Form requests email address with '@' sybmol be entered - ***passed***
+* Form requests email address with '@' symbol be entered - ***passed***
 * Form returns message that passowords do not match - ***passed***
 * From returns success message and logs user in - ***passed***
 
