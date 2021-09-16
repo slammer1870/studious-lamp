@@ -383,6 +383,7 @@ User is redirected to Dashboard and message saying permission denied is displaye
 
 - [CSS Validator](https://jigsaw.w3.org/css-validator/) 
 - [HTML Validator](https://validator.w3.org/) Note, because Alpine JS manipulate html element by placing aditional attributes on them such as "x-data" or ":class", there are returned as errors by the validator.
+- [PEP8 Validator](https://www.pythonchecker.com/)
 
 ### Cross Browser and Cross Device Testing
 
