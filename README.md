@@ -183,7 +183,7 @@ As well as this providing users with their own data aggregated into the "My Post
 The colours used in this project are simple Greys and Black for structual elements of the pages, Red and Blue for the edit and delete button and Green, Yellow and Red for visual feedback in the alert messages depening on the nature of the interaction.
 
 #### Typography
-The typography used is Helvetica. I initially wanted to use Montserrat but I found that Helvetica translated across devices better than Montserrat.
+The typography used is Montserrat. Montserrat has a clean layout and fits the theme of this site well.
 
 #### Images
 The images used are all relating to the activities of the company. They are mostly high quality JPEGs.
@@ -383,6 +383,7 @@ User is redirected to Dashboard and message saying permission denied is displaye
 
 - [CSS Validator](https://jigsaw.w3.org/css-validator/) 
 - [HTML Validator](https://validator.w3.org/) Note, because Alpine JS manipulate html element by placing aditional attributes on them such as "x-data" or ":class", there are returned as errors by the validator.
+- [PEP8 Validator](https://www.pythonchecker.com/)
 
 ### Cross Browser and Cross Device Testing
 
