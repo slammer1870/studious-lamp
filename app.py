@@ -76,9 +76,15 @@ def dashboard():
     posts = db.posts.find()
     yours = db.posts.find({"owner": session['user']})
     form = PostForm(request.form)
-    if posts != 0:
-        return render_template("dashboard.html", posts=posts, form=form, yours=yours)
-    return render_template("dashboard.html", form=form)
+    return render_template("dashboard.html", posts=posts, form=form, yours=yours)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('500.html'), 500
 
 if __name__ == '__main__':
 	app.run(debug=True)
