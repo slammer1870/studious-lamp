@@ -21,7 +21,7 @@ To use this website the steps are as follows.
 - Step 3: Users can create posts by filling this the create post form. Each post object has the property of "Owner" set to the user by default to allow for permission controls so that only the owner of a post can edit of delete it.\
 ![image](https://user-images.githubusercontent.com/42610577/133414066-3b644c07-dad5-491e-a08a-25c5e9965430.png)
 - Step 4: Users can edit or delete their posts by clicking on the edit or delete buttons that show up on the posts they own. All of a users posts are shown in the "My Posts" section if they scroll down past the message form.\
-![image](https://user-images.githubusercontent.com/42610577/133414333-26fce672-0e6d-4970-97c6-61a8ed878a46.png)
+![image](https://user-images.githubusercontent.com/42610577/133422675-2dab0d0a-0a1a-4cc4-899b-41e921e93694.png)
 
 ### Unauthenticated User
 Unauthenticated Users can access the landing page, login page and registration page. The site is built with access controls to stop unauthenticated users from accessing the dashboard as well as posting, post editing and post deleting functionality.
