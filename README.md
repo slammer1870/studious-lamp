@@ -2,7 +2,79 @@
 ![image](https://user-images.githubusercontent.com/42610577/133406469-cfa248d1-02d7-4d19-b337-c19859cc5578.png)
 [ExecBJJ - View The Live Deployed Website](https://stark-earth-52954.herokuapp.com/)
 
-
+# Table of Contents
+- [ExecBJJ Website](#execbjj-website)
+- [Table of Contents](#table-of-contents)
+  * [Author](#author)
+  * [Project Overview](#project-overview)
+  * [HOW TO USE](#how-to-use)
+    + [Unauthenticated User](#unauthenticated-user)
+    + [Standard User](#standard-user)
+    + [Admin User](#admin-user)
+  * [UX](#ux)
+    + [Strategy](#strategy)
+    + [Project Goals](#project-goals)
+      - [User Goals](#user-goals)
+      - [Developer Goals](#developer-goals)
+      - [Website Owner Goals](#website-owner-goals)
+    + [User Stories](#user-stories)
+    + [Design Choices](#design-choices)
+      - [Colors](#colors)
+      - [Typography](#typography)
+      - [Images](#images)
+      - [Design Elements](#design-elements)
+      - [Custom Javascript](#custom-javascript)
+    + [Wireframes](#wireframes)
+    + [Features](#features)
+      - [Future Features](#future-features)
+- [Information Architecture](#information-architecture)
+  * [Database Choice](#database-choice)
+    + [Data Models](#data-models)
+- [Technologies Used](#technologies-used)
+  * [Programming Languages](#programming-languages)
+  * [Fonts](#fonts)
+  * [Tools](#tools)
+  * [APIs](#apis)
+- [Defensive Programming](#defensive-programming)
+    + [Access Controls](#access-controls)
+    + [Permission Roles](#permission-roles)
+  * [Testing](#testing)
+    + [Penetration Testing](#penetration-testing)
+      - [Testing Authenticated Routes](#testing-authenticated-routes)
+      - [Result](#result)
+      - [Testing Role Based Permissions](#testing-role-based-permissions)
+      - [Result](#result-1)
+    + [Validation Testing](#validation-testing)
+    + [Cross Browser and Cross Device Testing](#cross-browser-and-cross-device-testing)
+    + [Automated Testing](#automated-testing)
+    + [Manual Testing](#manual-testing)
+      - [1. Newsletter form:](#1-newsletter-form-)
+        * [Results](#results)
+      - [2. Contact form:](#2-contact-form-)
+        * [Results](#results-1)
+      - [3. Registration Page:](#3-registration-page-)
+        * [Results](#results-2)
+      - [4. Login Page:](#4-login-page-)
+        * [Results](#results-3)
+      - [5. Dashboard Page:](#5-dashboard-page-)
+        * [Results](#results-4)
+      - [6. Post Edit Functionality:](#6-post-edit-functionality-)
+        * [Results](#results-5)
+      - [7. Post Delete Functionality:](#7-post-delete-functionality-)
+        * [Results](#results-6)
+      - [8. Logout Functionality:](#8-logout-functionality-)
+        * [Results](#results-7)
+      - [9. Conditional Rendering:](#9-conditional-rendering-)
+        * [Results](#results-8)
+    + [Defect Tracking](#defect-tracking)
+    + [Defects of Note](#defects-of-note)
+  * [Deployment](#deployment)
+    + [Deploy Locally](#deploy-locally)
+    + [Deploy To Heroku](#deploy-to-heroku)
+  * [Credits](#credits)
+    + [Content](#content)
+    + [Media](#media)
+    + [Acknowledgments](#acknowledgments)
 
 ## Author
 Sam Mc Nally
@@ -14,7 +86,7 @@ This site is design with a landing page for lead capturing as well as a user mes
 ## HOW TO USE
 To use this website the steps are as follows.
 
-- Step 1: Login, if user does not have an account they can login by clicking the "Click here to register" link on the login form.\
+- Step 1: Login users login by navigating to the "/login" route, if user does not have an account they can login by clicking the "Click here to register" link on the login form.\
 ![image](https://user-images.githubusercontent.com/42610577/133413663-9bf0bf65-2737-40b0-941c-51a9026b6b35.png)
 - Step 2: Once logged in a user will be redirected to the dashboard, a success message will flash to say that they have logged in.\
 ![image](https://user-images.githubusercontent.com/42610577/133413946-2b3e6f16-88ca-4990-b2a1-05218e03000c.png)
@@ -77,9 +149,6 @@ def edit(id):
 
 ### Admin User
 - Currently there is no permission restricted only to admin users via the interface of the website.
-
-# Table of Contents
-Copy your readme to http://ecotrust-canada.github.io/markdown-toc/ to make a table of contents.  This will help assessors to see the structure of your readme. Just test it out ast this tool isn't perfect. It tends to mess up with special characters like dashes.
 
 ## UX
 As this is a CRUD based application the key UX features for this site are clear and defined input for accessability. Examples of this can be seen on the edit and delete buttons for posts.\
