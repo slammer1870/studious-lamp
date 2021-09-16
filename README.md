@@ -1,8 +1,80 @@
 # ExecBJJ Website
 ![image](https://user-images.githubusercontent.com/42610577/133406469-cfa248d1-02d7-4d19-b337-c19859cc5578.png)
-[Live Deployed Website](https://stark-earth-52954.herokuapp.com/)
+[ExecBJJ - View The Live Deployed Website](https://stark-earth-52954.herokuapp.com/)
 
-
+# Table of Contents
+- [ExecBJJ Website](#execbjj-website)
+- [Table of Contents](#table-of-contents)
+  * [Author](#author)
+  * [Project Overview](#project-overview)
+  * [HOW TO USE](#how-to-use)
+    + [Unauthenticated User](#unauthenticated-user)
+    + [Standard User](#standard-user)
+    + [Admin User](#admin-user)
+  * [UX](#ux)
+    + [Strategy](#strategy)
+    + [Project Goals](#project-goals)
+      - [User Goals](#user-goals)
+      - [Developer Goals](#developer-goals)
+      - [Website Owner Goals](#website-owner-goals)
+    + [User Stories](#user-stories)
+    + [Design Choices](#design-choices)
+      - [Colors](#colors)
+      - [Typography](#typography)
+      - [Images](#images)
+      - [Design Elements](#design-elements)
+      - [Custom Javascript](#custom-javascript)
+    + [Wireframes](#wireframes)
+    + [Features](#features)
+      - [Future Features](#future-features)
+- [Information Architecture](#information-architecture)
+  * [Database Choice](#database-choice)
+    + [Data Models](#data-models)
+- [Technologies Used](#technologies-used)
+  * [Programming Languages](#programming-languages)
+  * [Fonts](#fonts)
+  * [Tools](#tools)
+  * [APIs](#apis)
+- [Defensive Programming](#defensive-programming)
+    + [Access Controls](#access-controls)
+    + [Permission Roles](#permission-roles)
+  * [Testing](#testing)
+    + [Penetration Testing](#penetration-testing)
+      - [Testing Authenticated Routes](#testing-authenticated-routes)
+      - [Result](#result)
+      - [Testing Role Based Permissions](#testing-role-based-permissions)
+      - [Result](#result-1)
+    + [Validation Testing](#validation-testing)
+    + [Cross Browser and Cross Device Testing](#cross-browser-and-cross-device-testing)
+    + [Automated Testing](#automated-testing)
+    + [Manual Testing](#manual-testing)
+      - [1. Newsletter form:](#1-newsletter-form-)
+        * [Results](#results)
+      - [2. Contact form:](#2-contact-form-)
+        * [Results](#results-1)
+      - [3. Registration Page:](#3-registration-page-)
+        * [Results](#results-2)
+      - [4. Login Page:](#4-login-page-)
+        * [Results](#results-3)
+      - [5. Dashboard Page:](#5-dashboard-page-)
+        * [Results](#results-4)
+      - [6. Post Edit Functionality:](#6-post-edit-functionality-)
+        * [Results](#results-5)
+      - [7. Post Delete Functionality:](#7-post-delete-functionality-)
+        * [Results](#results-6)
+      - [8. Logout Functionality:](#8-logout-functionality-)
+        * [Results](#results-7)
+      - [9. Conditional Rendering:](#9-conditional-rendering-)
+        * [Results](#results-8)
+    + [Defect Tracking](#defect-tracking)
+    + [Defects of Note](#defects-of-note)
+  * [Deployment](#deployment)
+    + [Deploy Locally](#deploy-locally)
+    + [Deploy To Heroku](#deploy-to-heroku)
+  * [Credits](#credits)
+    + [Content](#content)
+    + [Media](#media)
+    + [Acknowledgments](#acknowledgments)
 
 ## Author
 Sam Mc Nally
@@ -14,7 +86,7 @@ This site is design with a landing page for lead capturing as well as a user mes
 ## HOW TO USE
 To use this website the steps are as follows.
 
-- Step 1: Login, if user does not have an account they can login by clicking the "Click here to register" link on the login form.\
+- Step 1: Login users login by navigating to the "/login" route, if user does not have an account they can login by clicking the "Click here to register" link on the login form.\
 ![image](https://user-images.githubusercontent.com/42610577/133413663-9bf0bf65-2737-40b0-941c-51a9026b6b35.png)
 - Step 2: Once logged in a user will be redirected to the dashboard, a success message will flash to say that they have logged in.\
 ![image](https://user-images.githubusercontent.com/42610577/133413946-2b3e6f16-88ca-4990-b2a1-05218e03000c.png)
@@ -78,9 +150,6 @@ def edit(id):
 ### Admin User
 - Currently there is no permission restricted only to admin users via the interface of the website.
 
-# Table of Contents
-Copy your readme to http://ecotrust-canada.github.io/markdown-toc/ to make a table of contents.  This will help assessors to see the structure of your readme. Just test it out ast this tool isn't perfect. It tends to mess up with special characters like dashes.
-
 ## UX
 As this is a CRUD based application the key UX features for this site are clear and defined input for accessability. Examples of this can be seen on the edit and delete buttons for posts.\
 ![image](https://user-images.githubusercontent.com/42610577/133416933-fef1c338-7447-4de6-8aa0-adac275e7bd1.png)
@@ -132,12 +201,6 @@ Cards.\
 ![image](https://user-images.githubusercontent.com/42610577/133421909-4859cdd9-ab79-4dda-ba73-dcc03479b64f.png)
 
 
-#### Animations and Transitions
-
-- discuss any special animations or transitions you've programmed 
-- special hover state effects
-
-
 #### Custom Javascript
 There is a timeout function on the alert messages so that the dissapear after 5 seconds.
 ``` 
@@ -175,19 +238,9 @@ User's posts section.\
 ![image](https://user-images.githubusercontent.com/42610577/133422675-2dab0d0a-0a1a-4cc4-899b-41e921e93694.png)
 
 
-#### Implemented Features
-
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-It's easiest to break this section down into by pages and common page components such as home page, products page, product detail page, product sort buttons, navigation, and footer. Call out differences between viewports as needed. 
-
-Don't forget your 404 and 500 error pages.
-
 #### Future Features
 
-Use this section to discuss plans for additional features to be implemented in the future:
-
-If you end up not developing some features you hoped to implement, you can include those in this section.
+In the future I want to integrate payment for premium membership options.
 
 
 # Information Architecture
@@ -238,7 +291,6 @@ The models inputs are validated through WTForms.
   - [Sendgrid](https://sendgrid.com/) - An email delivery API
   - [MongoDB](https://www.mongodb.com/cloud/atlas)- a fully-managed cloud database used to store manage and query data sets
   
-Please note, if this gets more than 5 items, you may want to break it down into logical subsections
 
 ## Programming Languages
 
@@ -248,9 +300,6 @@ Please note, if this gets more than 5 items, you may want to break it down into 
 - [Python](https://www.python.org/) the project back-end functions are written using Python. Django and Python is used to build route functions.
 - [Flask](https://flask-doc.readthedocs.io/en/latest/) - python based templating language
 - [Markdown](https://www.markdownguide.org/) Documentation within the readme was generated using markdown
-
-[Back To Table of Contents](#table-of-contents)
-
 
 ## Fonts
  - [Helvtica](https://fonts.google.com/?query=helvetica)
@@ -444,13 +493,15 @@ Much of the app has been tested manually as follows:
 ##### Results
 * User is redirected to index page and is logged out - ***passed***
 
-#### 0. Conditional Rendering:
+#### 9. Conditional Rendering:
     1. As an unauthenitaced user check that navbar only displays Log In Button.
     2. As an authenitaced user check that navbar  displays Dashboard and Log Out Button.
+    3. Only an Onwer of a post can see Edit and Delete buttons on posts
  
 ##### Results
 * Log In Button appears in navbar but not Dashboard or Log Out Buttons - ***passed***
 * Dashboard and Log Out Buttons appears in navbar but not Log In Button - ***passed***
+* Post card only show Edit and Delete buttons for post owner - ***passed***
 
 ### Defect Tracking
 
@@ -557,4 +608,4 @@ All of the copy on the website is written by me
 Some of the photos are owned by [MaggieLeft](https://maggieleft.com/) the rest of the content is owned by ExecBJJ Ltd.
 
 ### Acknowledgments
-I'd like to thang my mentor for helping me!
+I'd like to thank my mentor Malia for helping me!
