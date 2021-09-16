@@ -265,13 +265,69 @@ Please note, if this gets more than 5 items, you may want to break it down into 
 
 
 # Defensive Programming
+The app is built with defensive programming in mind.
 
-Sites with admin rules and roles opens a site up to hacking especially if your users are savvy and notice url parameters correlate to database object manipulation.  If you did anything above the basics to defend your application against hacking write them out here.
-   
-[Back To Table of Contents](#table-of-contents)
+Some of the key features are built for access controls and permission roles.
+
+### Access Controls
+Unauthenticated Users can access the landing page, login page and registration page. The site is built with access controls to stop unauthenticated users from accessing the dashboard as well as posting, post editing and post deleting functionality.
+- A login Flask decorator is used to check that if the session object does not contain the property of logged in, the user will be redirected to a login page.
+
+``` def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'logged_in' not in session:
+            flash("You must be logged in to access", "bg-red-400")
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+```
+
+### Permission Roles
+Posts are assigned an owner by default on creating. The owner property is assigned from the User of the current session.
+
+Role based permissions at the route level are implemented to limit editing and deleting to that of the post owner.
+
+``` @app.route('/posts/edit/<string:id>', methods=['GET', 'POST'])
+@login_required
+def edit(id):
+    form = PostForm(request.form)
+    post = db.posts.find_one({"_id": id})
+    if session['user']['_id'] == post['owner']['_id']: #Check to ensure that the current user is in fact the post owner
+        form.post.data = post['post']
+        if request.method == "POST" and form.validate():
+            post = Post()
+            new_form = PostForm(request.form)
+            post.edit(id, new_form)
+            flash("Post has been updated", "bg-yellow-400")
+            return redirect(url_for('dashboard'))
+        return render_template("edit_post.html", form=form)
+    flash("Permission denied, you must be the owner of this post to edit", "bg-yellow-400")
+    return redirect(url_for('dashboard'))
+```
 
 ## Testing
 
+### Penetration Testing
+Baic penetration testing was done to ensure that unauthenticated users can't access authenticated content and that permissionless users can't edit role based permission functions.
+
+#### Testing Authenticated Routes
+    1. Without logging in attempt to access the url "/dashboard"
+    2. Using Postman try to send a POST request to the endpoint "/posts/create/"
+    3. Try to access the route "/posts/edit/<id of any post>"
+    
+#### Result
+User is redirected to the login page with the dashboard url set as the value of the "next" paramater in the current url - ***passed***
+A response telling the user the log in is returned - ***passed***
+A response telling the user the log in is returned - ***passed***
+
+#### Testing Role Based Permissions
+    1. Using the post ID of a post not owned the current authenticated user by try to access "/posts/edit/<id of post not owned by current user>"
+    2. Using the post ID of a post not owned the current authenticated user by try to access "/posts/delete/<id of post not owned by current user>"
+  
+#### Result
+User is redirected to Dashboard and message saying permission denied is displayed - ***passed*** 
+User is redirected to Dashboard and message saying permission denied is displayed - ***passed*** 
 
 ### Validation Testing
 
@@ -296,13 +352,9 @@ Create a table that lists out what devices, browsers, and operating system you t
 | browserstack                  | IE Edge 88  | windows 10 | XL 1920 x 964 |
 
 ### Automated Testing
-Whenever it is feasible, automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-If you did not run automating testing. State why you chose not to.
-
+Due to the fact that there are only two data models and a relatively simple frontend, I did not find situations where automated testing such as integration testing was neccessary as the the app is generally not complex enough to have majorly conflicitng elements or many change breaking features.
 ### Manual Testing
-
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
+Much of the app has been tested manually as follows:
 
 #### 1. Newsletter form:
     1. Go to the Index page
@@ -341,78 +393,67 @@ For any scenarios that have not been automated, test the user stories manually a
 * Registration Page loads - ***passed***
 * Form return visual feedback for required fields - ***passed***
 * Form requests email address with '@' sybmol be entered - ***passed***
-* Form returns success message - ***passed***
-* Form returns message stating that user is already subscribed - ***passed***
+* Form returns message that passowords do not match - ***passed***
+* From returns success message and logs user in - ***passed***
 
 #### 4. Login Page:
     1. Go to the Login page.
     2. Try to submit the empty form and verify that an error message about the required fields appears.
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
     4. Try to submit form with invalid credentials and verify error shows.
     5. Try to submit the form with all inputs valid and verify that a success message appears.
 
 ##### Results
 * Login Page loads - ***passed***
 * Form return visual feedback for required fields - ***passed***
-* Form requests email address with '@' sybmol be entered - ***passed***
+* Message is displayed that credentials are invalid - ***passed***
 * Form returns success message - ***passed***
-* Form returns message stating that user is already subscribed - ***passed***
 
 #### 5. Dashboard Page:
-    1. Go to the Registration page.
+    1. Go to Dashboard.
     2. Try to submit the empty form and verify that an error message about the required fields appears.
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
-    4. Try to submit form with mismatched passwords.
-    5. Try to submit the form with all inputs valid and verify that a success message appears.
+    3. Try to Edit a post and verify you are directed to the edit page with the correct post.
+    4. Try to Delete a post.
 
 ##### Results
-* Registration Page loads - ***passed***
+* Dashboard Page loads - ***passed***
 * Form return visual feedback for required fields - ***passed***
-* Form requests email address with '@' sybmol be entered - ***passed***
-* Form returns success message - ***passed***
-* Form returns message stating that user is already subscribed - ***passed***
+* Button brings you to the edit page with the post content prefilled in the form - ***passed***
+* Form returns success message that post was deleted - ***passed***
 
 #### 6. Post Edit Functionality:
-    1. Go to the Registration page.
+    1. Go to the Post Edit page.
     2. Try to submit the empty form and verify that an error message about the required fields appears.
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
-    4. Try to submit form with mismatched passwords.
+    3. Try to submit the form with too many characters that a relevant error message appears.
     5. Try to submit the form with all inputs valid and verify that a success message appears.
 
 ##### Results
-* Post Edit  - ***passed***
+* Post Edit Loads - ***passed***
 * Form return visual feedback for required fields - ***passed***
-* Form requests email address with '@' sybmol be entered - ***passed***
+* Form requests message saying character limit is 180 charaters - ***passed***
 * Form returns success message - ***passed***
-* Form returns message stating that user is already subscribed - ***passed***
 
 #### 7. Post Delete Functionality:
-    1. Go to the Registration page.
-    2. Try to submit the empty form and verify that an error message about the required fields appears.
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
-    4. Try to submit form with mismatched passwords.
-    5. Try to submit the form with all inputs valid and verify that a success message appears.
+    1. Go to the Dashboard page.
+    2. Try to Delete a post
 
 ##### Results
-* Registration Page loads - ***passed***
-* Form return visual feedback for required fields - ***passed***
-* Form requests email address with '@' sybmol be entered - ***passed***
-* Form returns success message - ***passed***
-* Form returns message stating that user is already subscribed - ***passed***
+* Dashboard Page loads - ***passed***
+* Page returns message stating that post was deleted - ***passed***
+
 
 #### 8. Logout Functionality:
-    1. Go to the Registration page.
-    2. Try to submit the empty form and verify that an error message about the required fields appears.
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
-    4. Try to submit form with mismatched passwords.
-    5. Try to submit the form with all inputs valid and verify that a success message appears.
-
+    1. Click logout button.
+  
 ##### Results
-* Registration Page loads - ***passed***
-* Form return visual feedback for required fields - ***passed***
-* Form requests email address with '@' sybmol be entered - ***passed***
-* Form returns success message - ***passed***
-* Form returns message stating that user is already subscribed - ***passed***
+* User is redirected to index page and is logged out - ***passed***
+
+#### 0. Conditional Rendering:
+    1. As an unauthenitaced user check that navbar only displays Log In Button.
+    2. As an authenitaced user check that navbar  displays Dashboard and Log Out Button.
+ 
+##### Results
+* Log In Button appears in navbar but not Dashboard or Log Out Buttons - ***passed***
+* Dashboard and Log Out Buttons appears in navbar but not Log In Button - ***passed***
 
 ### Defect Tracking
 
