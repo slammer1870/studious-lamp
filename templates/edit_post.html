@@ -1,14 +1,14 @@
 <!--Post edit page-->
 {% extends "base.html" %} {% block content %}
-<div class="pt-20 p-4 h-screen">
-  <h1 class="text-3xl lg:text-6xl font-semibold uppercase mb-8">Edit Post</h1>
+<div class="pt-20 p-4 h-screen max-w-screen-sm mx-auto">
+  <h1 class="text-3xl lg:text-5xl font-semibold uppercase mb-4 md:py-4 lg:py-8">Edit Post</h1>
   <a href="{{url_for('dashboard')}}">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="42.721"
       height="27.823"
       viewBox="0 0 42.721 27.823"
-      class="mb-8"
+      class="mb-12"
     >
       <line
         id="Line_12"
@@ -42,7 +42,7 @@
       /></svg
   ></a>
   {% from "partials/_formhelpers.html" import render_field %}
-  <form action="" method="POST" class="max-w-screen-sm mx-auto">
+  <form action="" method="POST" >
     <div class="flex flex-col text-sm font-semibold">
       {{render_field(form.post, class_="p-2 border my-4")}}
     </div>
