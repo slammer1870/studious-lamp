@@ -14,14 +14,14 @@ This site is design with a landing page for lead capturing as well as a user mes
 ## HOW TO USE
 To use this website the steps are as follows.
 
-- Step 1: Login, if user does not have an account they can login by clicking the "Click here to register" link on the login form.
+- Step 1: Login, if user does not have an account they can login by clicking the "Click here to register" link on the login form.\
 ![image](https://user-images.githubusercontent.com/42610577/133413663-9bf0bf65-2737-40b0-941c-51a9026b6b35.png)
-- Step 2: Once logged in a user will be redirected to the dashboard, a success message will flash to say that they have logged in.
+- Step 2: Once logged in a user will be redirected to the dashboard, a success message will flash to say that they have logged in.\
 ![image](https://user-images.githubusercontent.com/42610577/133413946-2b3e6f16-88ca-4990-b2a1-05218e03000c.png)
-- Step 3: Users can create posts by filling this the create post form. Each post object has the property of "Owner" set to the user by default to allow for permission controls so that only the owner of a post can edit of delete it.
+- Step 3: Users can create posts by filling this the create post form. Each post object has the property of "Owner" set to the user by default to allow for permission controls so that only the owner of a post can edit of delete it.\
 ![image](https://user-images.githubusercontent.com/42610577/133414066-3b644c07-dad5-491e-a08a-25c5e9965430.png)
-- Step 4: Users can edit or delete their posts by clicking on the edit or delete buttons that show up on the posts they own. All of a users posts are shown in the "My Posts" section if they scroll down past the message form.
-![image](https://user-images.githubusercontent.com/42610577/133414333-26fce672-0e6d-4970-97c6-61a8ed878a46.png)
+- Step 4: Users can edit or delete their posts by clicking on the edit or delete buttons that show up on the posts they own. All of a users posts are shown in the "My Posts" section if they scroll down past the message form.\
+![image](https://user-images.githubusercontent.com/42610577/133422675-2dab0d0a-0a1a-4cc4-899b-41e921e93694.png)
 
 ### Unauthenticated User
 Unauthenticated Users can access the landing page, login page and registration page. The site is built with access controls to stop unauthenticated users from accessing the dashboard as well as posting, post editing and post deleting functionality.
@@ -140,7 +140,8 @@ Cards.\
 
 #### Custom Javascript
 There is a timeout function on the alert messages so that the dissapear after 5 seconds.
-``` <script>
+``` 
+<script>
   window.setTimeout(
     "document.getElementById('alert').style.display='none';",
     5000
@@ -190,45 +191,52 @@ If you end up not developing some features you hoped to implement, you can inclu
 
 
 # Information Architecture
-
-As part of the requirements for this project you need to have at least 2 original data models.  It's this section that discusses your data and how each piece relates to another.
-
- - [draw.io](https://about.draw.io/features/) - is a free program that can be used to create Entity Relationship diagrams and CRUD flow diagrams.
-
-## Entity Relationship Diagram
-
-Use some type of spreadsheet or even draw out one by hand, but you should show how your data models are related to each other  or what those tables are even if they are entirely separate from each other. 
-
-## CRUD Flow Diagrams
-
-It might be overkill, but you could document the flow of how your CRUD operation logic works if its full of complex logic. Using a flow diagram or process diagram might make it easier for accessors to understand the inner workings of your program.
-
+![image](https://user-images.githubusercontent.com/42610577/133450291-1eb75c9a-2f4e-45d1-ac2b-9628ddab542d.png)
 
 ## Database Choice
-Write out which database(s) you used and why sometimes you use a different one for local vs production.
+MongoDB Atlas was user for both production and local development.
+
+PyMongo was used to connect to the MongoDB database.
+
+```
+# Database
+client = pymongo.MongoClient(os.environ.get("MONGO_URI"))
+db = client[str(os.environ.get("DB_NAME"))] 
+```
 
 ### Data Models
-Show the accessors you know your data. If you end up using some data models from an example project, call that out and don't be as detailed about writing those up unless you added to them.  
+The two data models are User and Post
 
-Each data model that you created yourself should have its Fields, Field Type and any validation documented.  You should also cross-reference any code in your repository that relate to CREATE, READ, UPDATE, DELETE operations for these models. 
+User:
+``` 
+user = {
+        "_id": uuid.uuid4().hex,
+        "name": form.name.data,
+        "email": form.email.data,
+        "password": form.password.data
+        }
+```
 
+Post:
+``` 
+post = {
+        "_id": uuid.uuid4().hex,
+        "owner": session['user'], #foreignkey to current logged in user
+        "date": datetime.now(),
+        "post": form.post.data
+        }
+```
+
+The models inputs are validated through WTForms.
 
 # Technologies Used
 
-In this section, you should mention the languages, frameworks, libraries, databases and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
-
-- If you included a js file that isn't your own, add it here.
-
-- If you included a css file that isn't your own, add it here.
-
-- Common 3rd party technologies to list:
-  - wirefames
-  - favicons
-  - color palette images
-  - fonts
-  - CSS Frameworks
-  - markdown tables
-  - markdown table of contents
+- A variety of different technologies were user:
+  - [Tailwind CSS](https://tailwindcss.com/) - A utility first CSS Framework
+  - [Alpine JS](https://alpinejs.dev/) - A lightweight Javascript Framework
+  - [Mailchimp](https://mailchimp.com/) - An email marketing platform
+  - [Sendgrid](https://sendgrid.com/) - An email delivery API
+  - [MongoDB](https://www.mongodb.com/cloud/atlas)- a fully-managed cloud database used to store manage and query data sets
   
 Please note, if this gets more than 5 items, you may want to break it down into logical subsections
 
@@ -236,146 +244,317 @@ Please note, if this gets more than 5 items, you may want to break it down into 
 
 - [CSS3](https://www.w3schools.com/w3css/default.asp) - used to style DOM appearance. 
 - [HTML5](https://www.w3schools.com/html/default.asp) -  used to define DOM elements. 
-- [JQuery](https://jquery.com) - used to initialize handlers for user interactive elements such as Bootstrap framework pieces like: check boxes, date pickers, menu toggles.
 - [JavaScript](https://www.javascript.com/)  -  used to help handle challenge member entry.
 - [Python](https://www.python.org/) the project back-end functions are written using Python. Django and Python is used to build route functions.
 - [Flask](https://flask-doc.readthedocs.io/en/latest/) - python based templating language
-- [mongodb](https://www.mongodb.com/cloud/atlas)- a fully-managed cloud database used to store manage and query data sets
 - [Markdown](https://www.markdownguide.org/) Documentation within the readme was generated using markdown
 
 [Back To Table of Contents](#table-of-contents)
 
-## Framework & Extensions
-- list out references to all the JS, CSS and requirement packages you used in your project. Include a short reason why this technology was important to your project.
-
 
 ## Fonts
-
-Provide a link to any google or other fonts used on your site using markdown links:
-
-- Base Font: [Orbitron](https://fonts.google.com/?query=orbitron&selection.family=Orbitron) 
-- Header Font: [Exo](https://fonts.google.com/?query=orbitron&selection.family=Exo) 
-- Button Icons: [Font Awesome 5](https://fontawesome.com/icons?d=gallery)
+ - [Helvtica](https://fonts.google.com/?query=helvetica)
 
 ## Tools
-In this section you should reference any 3rd party tools you used to make your project or readme. Wireframes, faviocon, github, color palette generators, heroku and any testing emulators are things that belong in this section.
-[Back To Table of Contents](#table-of-contents)
+ - [Adobe XD](https://www.adobe.com/ie/products/xd.html)
+ - [VS Code](https://code.visualstudio.com/)
 
 ## APIs
+ - [Mailchimp Marekting API](https://mailchimp.com/developer/marketing/api/)
+ - [Twillo Sendgrid](https://www.twilio.com/sendgrid/email-api)
 
-List out the API's  you used for this project. 
 
 # Defensive Programming
+The app is built with defensive programming in mind.
 
-Sites with admin rules and roles opens a site up to hacking especially if your users are savvy and notice url parameters correlate to database object manipulation.  If you did anything above the basics to defend your application against hacking write them out here.
-   
-[Back To Table of Contents](#table-of-contents)
+Some of the key features are built for access controls and permission roles.
+
+### Access Controls
+Unauthenticated Users can access the landing page, login page and registration page. The site is built with access controls to stop unauthenticated users from accessing the dashboard as well as posting, post editing and post deleting functionality.
+- A login Flask decorator is used to check that if the session object does not contain the property of logged in, the user will be redirected to a login page.
+
+``` def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'logged_in' not in session:
+            flash("You must be logged in to access", "bg-red-400")
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+```
+
+### Permission Roles
+Posts are assigned an owner by default on creating. The owner property is assigned from the User of the current session.
+
+Role based permissions at the route level are implemented to limit editing and deleting to that of the post owner.
+
+``` @app.route('/posts/edit/<string:id>', methods=['GET', 'POST'])
+@login_required
+def edit(id):
+    form = PostForm(request.form)
+    post = db.posts.find_one({"_id": id})
+    if session['user']['_id'] == post['owner']['_id']: #Check to ensure that the current user is in fact the post owner
+        form.post.data = post['post']
+        if request.method == "POST" and form.validate():
+            post = Post()
+            new_form = PostForm(request.form)
+            post.edit(id, new_form)
+            flash("Post has been updated", "bg-yellow-400")
+            return redirect(url_for('dashboard'))
+        return render_template("edit_post.html", form=form)
+    flash("Permission denied, you must be the owner of this post to edit", "bg-yellow-400")
+    return redirect(url_for('dashboard'))
+```
 
 ## Testing
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
+### Penetration Testing
+Baic penetration testing was done to ensure that unauthenticated users can't access authenticated content and that permissionless users can't edit role based permission functions.
 
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+#### Testing Authenticated Routes
+    1. Without logging in attempt to access the url "/dashboard"
+    2. Using Postman try to send a POST request to the endpoint "/posts/create/"
+    3. Try to access the route "/posts/edit/<id of any post>"
+    
+#### Result
+User is redirected to the login page with the dashboard url set as the value of the "next" paramater in the current url - ***passed*** \
+A response telling the user the log in is returned - ***passed*** \
+A response telling the user the log in is returned - ***passed*** 
+
+#### Testing Role Based Permissions
+    1. Using the post ID of a post not owned the current authenticated user by try to access "/posts/edit/<id of post not owned by current user>"
+    2. Using the post ID of a post not owned the current authenticated user by try to access "/posts/delete/<id of post not owned by current user>"
+  
+#### Result
+User is redirected to Dashboard and message saying permission denied is displayed - ***passed*** \
+User is redirected to Dashboard and message saying permission denied is displayed - ***passed*** 
 
 ### Validation Testing
-You should try to ensure you code is valid and follows proper indentation.  In this section you should write up any websites you used to validate your code. As your projects becomes more complex these tools may change.
 
 - [CSS Validator](https://jigsaw.w3.org/css-validator/) Note, any error associated with root: color variables were ignored.
 - [HTML Validator](https://validator.w3.org/)
 
 ### Cross Browser and Cross Device Testing
-Create a table that lists out what devices, browsers, and operating system you tested your application on and a brief description of why you chose the mixture you did. The point is to prove that you looked at the site across various browsers, operating systems, and viewport breakpoints.
 
 | TOOL / Device                 | BROWSER     | OS         | SCREEN WIDTH  |
 |-------------------------------|-------------|------------|---------------|
-| real phone: motog6            | chrome      | android    | XS 360 x 640  |
-| browser stack: iPhone5s       | safari      | iOs        | XS 320 x 568  |
-| dev tools emulator: pixel 2   | firefox     | android    | SM 411 x 731  |
-| browserstack: iPhone 10x      | Chrome      | iOs        | SM 375 x 812  |
-| browserstack: nexus 7 - vert  | Chrome      | android    | M 600 x 960   |
-| real tablet: ipad mini - vert | safari      | iOs        | M 768 x 1024  |
-| browserstack: nexus 7 - horiz | firefox     | android    | LG 960 x 600  |
-| chrome emulator: ipad - horiz | safari      | iOs        | LG 1024 x 768 |
-| browserstack                  | Chrome      | windows    | XL 1920 x 946 |
-| real computer: mac book pro   | safari 12.1 | Mohave     | XL 1400 x 766 |
-| browserstack                  | IE Edge 88  | windows 10 | XL 1920 x 964 |
+| real phone: iPhone 6          | chrome      | iOs        | XS 360 x 640  |
+| dev tools emulator: iPhone5s  | chrome      | iOs        | XS 320 x 568  |
+| dev tools emulator: pixel 2   | chrome      | android    | SM 411 x 731  |
+| dev tools emulator: iPhone 8  | chrome      | iOs        | SM 411 x 731  |
+| dev tools emulator: iPad      | chrome      | iOs        | MD 768 x 1024 |
+| dev tools emulator: Surface   | chrome      | android    | MD 540 x 720  |
+| dev tools emulator: iPad Pro  | chrome      | iOs        | LG 1024 x 1366|
+| real computer: mac book pro   | safari      | Catalina   | XL 1400 x 766 |
+| real computer: mac book pro   | chrome      | Catalina   | XL 1400 x 766 |
 
 ### Automated Testing
-Whenever it is feasible, automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-If you did not run automating testing. State why you chose not to.
+Due to the fact that there are only two data models and a relatively simple frontend, I did not find situations where automated testing such as integration testing was neccessary as the the app is generally not complex enough to have majorly conflicitng elements or many change breaking features.
 
 ### Manual Testing
+Much of the app has been tested manually as follows:
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Contact form:
-    1. Go to the "Contact Us" page
+#### 1. Newsletter form:
+    1. Go to the Index page
     2. Try to submit the empty form and verify that an error message about the required fields appears
     3. Try to submit the form with an invalid email address and verify that a relevant error message appears
     4. Try to submit the form with all inputs valid and verify that a success message appears.
-    
-Here is a [Manual Testing Template](https://docs.google.com/spreadsheets/d/189VpSeEG9oevSRhvb2WZl8zCk9L3s2iWQyrJ_1jjAGQ/edit?usp=sharing) that you can use as a starting point to keep track of your testing efforts. Make a copy of it in your own account and update as needed to reflect the browsers you are testing and features.  
+    5. Try to sign up as an already subscbribed user.
 
-It's ok to spot check specific functionality across devices and browsers but each page should be viewed as a whole for each device/browser combo at least once.
+##### Results
+* Index Page loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Form requests email address with '@' sybmol be entered - ***passed***
+* Form returns success message - ***passed***
+* Form returns message stating that user is already subscribed - ***passed***
 
-A quick way to check if items are exceeding the screen width of a project is to run this javascript in the console for various screen emulations:
+#### 2. Contact form:
+    1. Go to the Index page.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
+    4. Try to submit the form with all inputs valid and verify that a success message appears.
 
-```
-var docWidth = document.documentElement.offsetWidth;
-[].forEach.call(document.querySelectorAll('*'),function(el){if(el.offsetWidth > docWidth){console.log(el);}});
-```
+##### Results
+* Index Page loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Form requests email address with '@' sybmol be entered - ***passed***
+* Form returns success message - ***passed***
+
+#### 3. Registration Page:
+    1. Go to the Registration page.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    3. Try to submit the form with an invalid email address and verify that a relevant error message appears.
+    4. Try to submit form with mismatched passwords and verify mismatched password message.
+    5. Try to submit the form with all inputs valid and verify that a success message appears.
+
+##### Results
+* Registration Page loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Form requests email address with '@' sybmol be entered - ***passed***
+* Form returns message that passowords do not match - ***passed***
+* From returns success message and logs user in - ***passed***
+
+#### 4. Login Page:
+    1. Go to the Login page.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    4. Try to submit form with invalid credentials and verify error shows.
+    5. Try to submit the form with all inputs valid and verify that a success message appears.
+
+##### Results
+* Login Page loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Message is displayed that credentials are invalid - ***passed***
+* Form returns success message - ***passed***
+
+#### 5. Dashboard Page:
+    1. Go to Dashboard.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    3. Try to Edit a post and verify you are directed to the edit page with the correct post.
+    4. Try to Delete a post.
+
+##### Results
+* Dashboard Page loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Button brings you to the edit page with the post content prefilled in the form - ***passed***
+* Form returns success message that post was deleted - ***passed***
+
+#### 6. Post Edit Functionality:
+    1. Go to the Post Edit page.
+    2. Try to submit the empty form and verify that an error message about the required fields appears.
+    3. Try to submit the form with too many characters that a relevant error message appears.
+    5. Try to submit the form with all inputs valid and verify that a success message appears.
+
+##### Results
+* Post Edit Loads - ***passed***
+* Form return visual feedback for required fields - ***passed***
+* Form requests message saying character limit is 180 charaters - ***passed***
+* Form returns success message - ***passed***
+
+#### 7. Post Delete Functionality:
+    1. Go to the Dashboard page.
+    2. Try to Delete a post
+
+##### Results
+* Dashboard Page loads - ***passed***
+* Page returns message stating that post was deleted - ***passed***
+
+#### 8. Logout Functionality:
+    1. Click logout button.
+  
+##### Results
+* User is redirected to index page and is logged out - ***passed***
+
+#### 0. Conditional Rendering:
+    1. As an unauthenitaced user check that navbar only displays Log In Button.
+    2. As an authenitaced user check that navbar  displays Dashboard and Log Out Button.
+ 
+##### Results
+* Log In Button appears in navbar but not Dashboard or Log Out Buttons - ***passed***
+* Dashboard and Log Out Buttons appears in navbar but not Log In Button - ***passed***
 
 ### Defect Tracking
 
-You should mention  any  bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-Here is a [Defect Tracking Template](https://docs.google.com/spreadsheets/d/1tYB4X4wTCNEW_Y1no3hsGbclh2bLokl_I5Ev3s5EuJA/edit?usp=sharing) you use as a starting point to track defects. Make a copy of the sheet to your own account and update the Features sheet to match your project. 
-
-
 ### Defects of Note
-Some defects are more pesky than others. Highlight 3-5 of the bugs that drove you the most nuts and how you finally ended up resolving them.
-
-
-### Outstanding Defects
-It's ok to not resolve all the defects you found. If you know of something that isn't quite right, list it out and explain why you chose not to resolve it.
-
-### Validation
+The absolute position of the form on index, login and register can overlap the div below if the screen height is very small or push by other browser elements on mobile.
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages).
-
-In particular, you should provide all details of the differences between the deployed version, and the development version, if any.
-
-Remember to use proper markdown for commands and enumerated steps.
-
 ### Deploy Locally
 
-Write out the steps you take starting from cloning the repository in github or clicking a gitpod button to run your code locally. Test it out and make sure it works. This can be running from your IDE of choice like VSCode or PyCharm or GitPod.
+To deploy locally:
 
-You may want to re-watch the videos when writing up this section.
+1. In the terminal run the command
+``` 
+git clone https://github.com/slammer1870/studious-lamp.git 
+```
+2. In the root directory create your virtual environment and run
+```
+pip install -r requirements.txt
+```
+3. Create a .env file with the environemnt variables:\
+> |        Variable       	|   Setting  	|
+>|:---------------------:	|:----------:	|
+>| MONGO_URI                | YOUR_KEY   	|
+>| DB_NAME            	    | YOUR_KEY   	|
+>| SECRET_KEY        	    | YOUR_KEY   	|
+>| MAILCHIMP_API_KEY        | YOUR_KEY    	|
+>| MAILCHIMP_SERVER 	    | YOUR_KEY  	|
+>| MAILCHIMP_LIST_ID        | 5000       	|
+>| SECRET_KEY            	| YOUR_KEY  	|
+>| SENDGRID_API_KEY    	    | YOUR_KEY  	|
+
+4. Go to Project Root>Auth>Routes.py and change:
+```
+from app import app
+```
+to
+```
+from __main__ import app
+```
+5. Go to Project Root>Posts>Routes.py and change:
+```
+from app import app
+```
+to
+```
+from __main__ import app
+```
+6. Go to Project Root>Newsletter>Routes.py and change:
+```
+from app import app
+```
+to
+```
+from __main__ import app
+```
+7. Run
+```
+python app.py
+```
 
 ### Deploy To Heroku
+To deploy to Heroku:
 
-Write out steps you would take and test them to deploy your code to Heroku. Include a table of configuration variables as needed in your settings.py file without exposing your own values. Include links to users on how to set up such accounts for AWS, STRIPE or other programs.  
-
-You may want to re-watch the videos when writing up this section.
+1. In the terminal run the command
+``` 
+git clone https://github.com/slammer1870/studious-lamp.git 
+```
+2. Login to Heroku and set up a new app
+3. Under the Settings tab, click Reveal Config Vars
+4. Set the config variables to be:
+> |        Variable       	|   Setting  	|
+>|:---------------------:	|:----------:	|
+>| MONGO_URI                | YOUR_KEY   	|
+>| DB_NAME            	    | YOUR_KEY   	|
+>| SECRET_KEY        	    | YOUR_KEY   	|
+>| MAILCHIMP_API_KEY        | YOUR_KEY    	|
+>| MAILCHIMP_SERVER 	    | YOUR_KEY  	|
+>| MAILCHIMP_LIST_ID        | 5000       	|
+>| SECRET_KEY            	| YOUR_KEY  	|
+>| SENDGRID_API_KEY    	    | YOUR_KEY  	|
+5. Log in to Heroku, you can do this by running
+```
+heroku login
+```
+6. Clone the heroku repository
+```
+heroku git:clone -a 'your_app_name'
+```
+7. Add your files, commit and push to Heorku main:
+```bash
+$ git add .
+$ git commit -am "initial heroku commit" 
+$ git push heroku main
+```
 
 ## Credits
-
-To avoid plagiarism amd copyright infringement, you should mention any other projects, stackoverflow, videos, blogs, etc that you used to gather imagery or ideas for your code even if you used it as a starting point and modified things. Giving credit to other people's efforts and ideas that saved you time acknowledges the hard work others did. 
+The footer component was bootstrapped from [tailblocks.cc](https://tailblocks.cc/)
 
 ### Content
-
-Use bullet points to list out sites you copied text from and cross-reference where those show up on your site
+All of the copy on the website is written by me
 
 ### Media
-
-Make a list of sites you used images from. If you used several sites try to match up each image to the correct site. This includes attribution for icons if they came from font awesome or other sites, give them credit.
+Some of the photos are owned by [MaggieLeft](https://maggieleft.com/) the rest of the content is owned by ExecBJJ Ltd.
 
 ### Acknowledgments
-
-This is the section where you refer to code examples, mentors, blogs, stack overflow answers and videos that helped you accomplish your end project. Even if it's an idea that you updated you should note the site and why it was important to your completed project.
-
-If you used a CodeInstitute Example project as a starting point. Make note of that here.
+I'd like to thang my mentor for helping me!
