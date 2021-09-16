@@ -44,6 +44,7 @@ def contact():
     news = NewsletterForm(request.form)
     form = ContactForm(request.form)        
     if request.method == 'POST' and form.validate(): #Check form post data is valid
+        #SendGrid configuration
         message = Mail(
             from_email='hello@sammcnally.dev',
             to_emails='hello@sammcnally.dev',
@@ -53,13 +54,9 @@ def contact():
         try:
             sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY')) #Initialises Sendgrid Client
             response = sg.send(message)
-            print(response.status_code)
-            print(response.body)
-            print(response.headers)
             flash("Thank you for your message, we will respond shortly", "bg-green-400")
             return redirect(url_for('index'))
         except Exception as e:
-            print(e.message)
             flash("Oops something went wrong", "bg-red-400")
             return redirect(url_for('index'))
     flash("Oops something went wrong", "bg-red-400")
