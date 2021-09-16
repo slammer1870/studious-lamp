@@ -169,19 +169,9 @@ User's posts section.\
 ![image](https://user-images.githubusercontent.com/42610577/133422675-2dab0d0a-0a1a-4cc4-899b-41e921e93694.png)
 
 
-#### Implemented Features
-
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-It's easiest to break this section down into by pages and common page components such as home page, products page, product detail page, product sort buttons, navigation, and footer. Call out differences between viewports as needed. 
-
-Don't forget your 404 and 500 error pages.
-
 #### Future Features
 
-Use this section to discuss plans for additional features to be implemented in the future:
-
-If you end up not developing some features you hoped to implement, you can include those in this section.
+In the future I want to integrate payment for premium membership options.
 
 
 # Information Architecture
@@ -232,7 +222,6 @@ The models inputs are validated through WTForms.
   - [Sendgrid](https://sendgrid.com/) - An email delivery API
   - [MongoDB](https://www.mongodb.com/cloud/atlas)- a fully-managed cloud database used to store manage and query data sets
   
-Please note, if this gets more than 5 items, you may want to break it down into logical subsections
 
 ## Programming Languages
 
@@ -242,9 +231,6 @@ Please note, if this gets more than 5 items, you may want to break it down into 
 - [Python](https://www.python.org/) the project back-end functions are written using Python. Django and Python is used to build route functions.
 - [Flask](https://flask-doc.readthedocs.io/en/latest/) - python based templating language
 - [Markdown](https://www.markdownguide.org/) Documentation within the readme was generated using markdown
-
-[Back To Table of Contents](#table-of-contents)
-
 
 ## Fonts
  - [Helvtica](https://fonts.google.com/?query=helvetica)
@@ -553,4 +539,4 @@ All of the copy on the website is written by me
 Some of the photos are owned by [MaggieLeft](https://maggieleft.com/) the rest of the content is owned by ExecBJJ Ltd.
 
 ### Acknowledgments
-I'd like to thang my mentor for helping me!
+I'd like to thank my mentor Malia for helping me!
