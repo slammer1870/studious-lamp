@@ -335,24 +335,22 @@ User is redirected to Dashboard and message saying permission denied is displaye
 - [HTML Validator](https://validator.w3.org/)
 
 ### Cross Browser and Cross Device Testing
-Create a table that lists out what devices, browsers, and operating system you tested your application on and a brief description of why you chose the mixture you did. The point is to prove that you looked at the site across various browsers, operating systems, and viewport breakpoints.
 
 | TOOL / Device                 | BROWSER     | OS         | SCREEN WIDTH  |
 |-------------------------------|-------------|------------|---------------|
-| real phone: motog6            | chrome      | android    | XS 360 x 640  |
-| browser stack: iPhone5s       | safari      | iOs        | XS 320 x 568  |
-| dev tools emulator: pixel 2   | firefox     | android    | SM 411 x 731  |
-| browserstack: iPhone 10x      | Chrome      | iOs        | SM 375 x 812  |
-| browserstack: nexus 7 - vert  | Chrome      | android    | M 600 x 960   |
-| real tablet: ipad mini - vert | safari      | iOs        | M 768 x 1024  |
-| browserstack: nexus 7 - horiz | firefox     | android    | LG 960 x 600  |
-| chrome emulator: ipad - horiz | safari      | iOs        | LG 1024 x 768 |
-| browserstack                  | Chrome      | windows    | XL 1920 x 946 |
-| real computer: mac book pro   | safari 12.1 | Mohave     | XL 1400 x 766 |
-| browserstack                  | IE Edge 88  | windows 10 | XL 1920 x 964 |
+| real phone: iPhone 6          | chrome      | iOs        | XS 360 x 640  |
+| dev tools emulator: iPhone5s  | chrome      | iOs        | XS 320 x 568  |
+| dev tools emulator: pixel 2   | chrome      | android    | SM 411 x 731  |
+| dev tools emulator: iPhone 8  | chrome      | iOs        | SM 411 x 731  |
+| dev tools emulator: iPad      | chrome      | iOs        | MD 768 x 1024 |
+| dev tools emulator: Surface   | chrome      | android    | MD 540 x 720  |
+| dev tools emulator: iPad Pro  | chrome      | iOs        | LG 1024 x 1366|
+| real computer: mac book pro   | safari      | Catalina   | XL 1400 x 766 |
+| real computer: mac book pro   | chrome      | Catalina   | XL 1400 x 766 |
 
 ### Automated Testing
 Due to the fact that there are only two data models and a relatively simple frontend, I did not find situations where automated testing such as integration testing was neccessary as the the app is generally not complex enough to have majorly conflicitng elements or many change breaking features.
+
 ### Manual Testing
 Much of the app has been tested manually as follows:
 
@@ -439,7 +437,6 @@ Much of the app has been tested manually as follows:
 ##### Results
 * Dashboard Page loads - ***passed***
 * Page returns message stating that post was deleted - ***passed***
-
 
 #### 8. Logout Functionality:
     1. Click logout button.
@@ -551,19 +548,13 @@ $ git push heroku main
 ```
 
 ## Credits
-
-To avoid plagiarism amd copyright infringement, you should mention any other projects, stackoverflow, videos, blogs, etc that you used to gather imagery or ideas for your code even if you used it as a starting point and modified things. Giving credit to other people's efforts and ideas that saved you time acknowledges the hard work others did. 
+The footer component was bootstrapped from [tailblocks.cc](https://tailblocks.cc/)
 
 ### Content
-
-Use bullet points to list out sites you copied text from and cross-reference where those show up on your site
+All of the copy on the website is written by me
 
 ### Media
-
-Make a list of sites you used images from. If you used several sites try to match up each image to the correct site. This includes attribution for icons if they came from font awesome or other sites, give them credit.
+Some of the photos are owned by [MaggieLeft](https://maggieleft.com/) the rest of the content is owned by ExecBJJ Ltd.
 
 ### Acknowledgments
-
-This is the section where you refer to code examples, mentors, blogs, stack overflow answers and videos that helped you accomplish your end project. Even if it's an idea that you updated you should note the site and why it was important to your completed project.
-
-If you used a CodeInstitute Example project as a starting point. Make note of that here.
+I'd like to thang my mentor for helping me!
