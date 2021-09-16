@@ -438,7 +438,7 @@ Much of the app has been tested manually as follows:
 ##### Results
 * User is redirected to index page and is logged out - ***passed***
 
-#### 0. Conditional Rendering:
+#### 9. Conditional Rendering:
     1. As an unauthenitaced user check that navbar only displays Log In Button.
     2. As an authenitaced user check that navbar  displays Dashboard and Log Out Button.
  
